@@ -59,17 +59,70 @@ const config: Config = {
           900: '#7c2d12',
           950: '#431407',
         },
-        'ag-cream': '#e9e2cf',
-        'ag-text-black': '#191100',
-        'ag-secondary-dark': '#241700',
+        // Angel Gabriel brand colors
+        'ag-blue': {
+          DEFAULT: '#042250', // Primary blue
+          light: '#4F7BA3',
+          dark: '#132C4B',
+          darker: '#042250',
+        },
+        'ag-gold': {
+          DEFAULT: '#e6bf93', // Gold accent color
+          light: '#fbddaf',
+          dark: '#b8845c',
+        },
+        // Neutral colors
+        'ag-neutral': {
+          50: '#f9f9f9',
+          100: '#f0f0f0',
+          200: '#dfe1e2',
+          300: '#a9aeb1',
+          400: '#757575',
+          500: '#565c65',
+          600: '#3d4551',
+          700: '#252f3e',
+          800: '#171416',
+          900: '#000000',
+        },
+        // Earth tones palette
+        'ag-earth': {
+          lightest: '#fbddaf', // Lightest cream
+          light: '#e6bf93', // Light beige
+          medium: '#b8845c', // Medium brown
+          dark: '#5f3b30', // Dark brown
+          darkest: '#241700', // Darkest brown
+        },
+        // Muted accent colors
+        'ag-muted': {
+          beige: '#ada684', // Beige accent
+          brown: '#5f3b30', // Brown accent
+          green: '#576158', // Muted green
+          gray: '#757464', // Muted gray
+        },
+        'ag-cream': '#fbddaf',
+        'ag-text-black': '#191410',
+        'ag-secondary-dark': '#5f3b30',
         'ag-text': {
-          DEFAULT: '#191100',
-          light: '#fefefe',
+          DEFAULT: '#171416', // Primary text color
+          light: '#fbddaf',   // Text on dark backgrounds
         },
         'ag-button': {
-          DEFAULT: '#000000',
-          hover: '#181818',
-          active: '#303030',
+          DEFAULT: '#5f3b30', // Brown button
+          hover: '#443732', // Darker brown on hover
+          active: '#5f3b30', // Original brown when active
+        },
+        // Invert colors for accents
+        'ag-invert': {
+          blue: {
+            light: '#70A3C3',
+            DEFAULT: '#4F7BA3',
+            dark: '#042250',
+          },
+          teal: {
+            light: '#A0C4CF',
+            DEFAULT: '#5591A9',
+            dark: '#042250',
+          },
         },
       },
       fontFamily: {

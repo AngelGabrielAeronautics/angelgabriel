@@ -151,7 +151,7 @@ export default function HamburgerMenu() {
               className={`group flex items-center rounded-lg px-3 py-2 text-base font-medium transition-colors ${
                 pathname === item.href
                   ? 'bg-primary-50 text-primary-600 dark:bg-primary-900/50 dark:text-primary-400'
-                  : 'text-gray-700 hover:bg-gray-50 hover:text-primary-600 dark:text-gray-300 dark:hover:bg-black dark:hover:text-primary-400'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-ag-secondary-dark dark:text-gray-300 dark:hover:bg-black dark:hover:text-primary-400'
               }`}
               onClick={() => setIsOpen(false)}
             >

@@ -26,23 +26,23 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ag-earth-dark focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-primary {
-    @apply bg-ag-earth-dark text-white hover:bg-ag-button-hover;
+    @apply bg-black text-white hover:bg-gray-900;
   }
 
   .btn-secondary {
-    @apply bg-ag-muted-beige text-white hover:bg-ag-muted-brown;
+    @apply bg-[#241700] text-white hover:bg-black;
   }
 
   .btn-outline {
-    @apply border border-ag-muted-brown bg-white hover:bg-ag-cream;
+    @apply border border-gray-300 bg-white hover:bg-gray-50;
   }
 
   .input {
-    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-ag-earth-dark focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .card {
@@ -50,7 +50,7 @@
   }
 
   .link {
-    @apply text-ag-earth-dark hover:text-ag-button-hover underline-offset-4 hover:underline;
+    @apply text-black hover:text-gray-900 underline-offset-4 hover:underline;
   }
 }
 
@@ -70,12 +70,12 @@ input[type="text"],
 input[type="email"],
 input[type="number"],
 textarea {
-  @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-ag-earth-dark focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-  @apply h-4 w-4 rounded border-gray-300 text-ag-earth-dark focus:ring-ag-earth-dark;
+  @apply h-4 w-4 rounded border-gray-300 text-black focus:ring-black;
 }
 
 /* Custom utilities */
@@ -92,4 +92,59 @@ input[type="checkbox"] {
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* Print styles */
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: portrait;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  .bg-ag-cream {
+    background-color: white !important;
+  }
+  
+  .py-24 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  img, table, figure {
+    page-break-inside: avoid;
+  }
+  
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+  
+  /* Add footer with page numbers */
+  body::after {
+    content: "© Angel Gabriel Aeronautics - Page " counter(page);
+    display: block;
+    text-align: center;
+    font-size: 10pt;
+    color: #666;
+    margin-top: 1cm;
+  }
 } 

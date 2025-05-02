@@ -60,18 +60,18 @@ export default function Footer() {
               />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">
+              <h3 className="text-xl font-light mb-2">
                 Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving
               </h3>
-              <Link href="/blog/exploring-the-wild" className="text-blue-600 hover:underline">
+              <Link href="/blog/exploring-the-wild" className="text-gray-800 hover:text-gray-600 font-medium">
                 Read More
               </Link>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-[#241700] p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Contact us</h3>
+          <div className="bg-ag-secondary-dark p-6 rounded-lg">
+            <h3 className="text-xl font-light mb-4">Contact us</h3>
             <form onSubmit={handleContactSubmit}>
               <div className="mb-4">
                 <label htmlFor="firstName" className="block text-sm mb-1">First name</label>
@@ -125,7 +125,7 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
-                className="bg-black hover:bg-gray-900 text-white px-4 py-2 rounded-md float-right"
+                className="bg-ag-secondary-dark hover:bg-ag-button-hover text-white px-4 py-2 rounded-md float-right border border-ag-cream"
               >
                 Submit
               </button>
@@ -133,8 +133,8 @@ export default function Footer() {
           </div>
 
           {/* Newsletter Subscription */}
-          <div className="bg-[#241700] p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Subscribe to our newsletter</h3>
+          <div className="bg-ag-secondary-dark p-6 rounded-lg">
+            <h3 className="text-xl font-light mb-4">Subscribe to our newsletter</h3>
             <form onSubmit={handleSubscribeSubmit}>
               <div className="mb-4">
                 <label htmlFor="subscribeEmail" className="block text-sm mb-1">Email <span className="text-red-400">*</span></label>
@@ -150,7 +150,7 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
-                className="bg-black hover:bg-gray-900 text-white px-4 py-2 rounded-md w-full"
+                className="bg-ag-secondary-dark hover:bg-ag-button-hover text-white px-4 py-2 rounded-md w-full border border-ag-cream"
               >
                 Submit
               </button>
@@ -159,14 +159,14 @@ export default function Footer() {
         </div>
 
         {/* Company Description */}
-        <div className="text-center max-w-4xl mx-auto mb-10">
+        <div className="text-center max-w-7xl mx-auto mb-10">
           <p className="mb-4 text-xl text-justify">
             Welcome to Angel Gabriel, your trusted air charter provider since 2013. We specialise in lodge transfer flights and private charters across Southern Africa and Botswana, offering unparalleled service, safety, and convenience. Whether you're travelling for business or leisure, our experienced team is committed to delivering seamless, personalised aviation solutions. At Angel Gabriel, we're dedicated to making every journey as memorable as the destinations we fly you to.
           </p>
           <div className="mt-8">
             <Link
-              href="/quotes"
-              className="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-900 transition-colors"
+              href="/rates-and-quotes"
+              className="inline-block bg-black hover:bg-ag-button-hover text-white px-6 py-3 rounded-md transition-colors border border-ag-cream"
             >
               Request a charter quote
             </Link>
@@ -175,34 +175,35 @@ export default function Footer() {
 
         {/* Social Media Icons */}
         <div className="flex justify-center space-x-6 mb-8">
-          <a href="https://facebook.com" className="text-white hover:text-gray-300 transition-colors" aria-label="Facebook">
+          <a href="https://www.facebook.com/AngelGabrielAeronautics" className="text-white hover:text-ag-cream transition-colors" aria-label="Facebook">
             <FaFacebook size={28} />
           </a>
-          <a href="https://twitter.com" className="text-white hover:text-gray-300 transition-colors" aria-label="X (formerly Twitter)">
+          <a href="https://x.com/AngelGabrielAir" className="text-white hover:text-ag-cream transition-colors" aria-label="X (formerly Twitter)">
             <FaXTwitter size={28} />
           </a>
-          <a href="https://instagram.com" className="text-white hover:text-gray-300 transition-colors" aria-label="Instagram">
+          <a href="https://www.instagram.com/angel_gabriel_air" className="text-white hover:text-ag-cream transition-colors" aria-label="Instagram">
             <FaInstagram size={28} />
           </a>
-          <a href="https://youtube.com" className="text-white hover:text-gray-300 transition-colors" aria-label="YouTube">
+          <a href="https://www.youtube.com/user/AngelGabrielAero" className="text-white hover:text-ag-cream transition-colors" aria-label="YouTube">
             <FaYoutube size={28} />
           </a>
-          <a href="https://linkedin.com" className="text-white hover:text-gray-300 transition-colors" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/angel-gabriel-aeronautics/" className="text-white hover:text-ag-cream transition-colors" aria-label="LinkedIn">
             <FaLinkedin size={28} />
           </a>
-          <a href="https://pinterest.com" className="text-white hover:text-gray-300 transition-colors" aria-label="Pinterest">
+          <a href="https://za.pinterest.com/angelgabrielaeronautics" className="text-white hover:text-ag-cream transition-colors" aria-label="Pinterest">
             <FaPinterest size={28} />
           </a>
         </div>
 
         {/* Footer Navigation */}
-        <div className="border-t border-gray-800 pt-6 pb-4">
+        <div className="border-t bg-black pt-6 pb-4">
           <ul className="flex justify-center space-x-8 mb-4">
-            <li><Link href="/" className="text-gray-300 hover:text-white transition-colors">Home</Link></li>
-            <li><Link href="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link></li>
-            <li><Link href="/links" className="text-gray-300 hover:text-white transition-colors">Links</Link></li>
-            <li><Link href="/terms" className="text-gray-300 hover:text-white transition-colors">Legal</Link></li>
-            <li><Link href="/blog" className="text-gray-300 hover:text-white transition-colors">Blog</Link></li>
+            <li><Link href="/" className="text-gray-300 hover:text-ag-cream transition-colors">Home</Link></li>
+            <li><Link href="/rates-and-quotes" className="text-gray-300 hover:text-ag-cream transition-colors">Rates & Quotes</Link></li>
+            <li><Link href="/contact" className="text-gray-300 hover:text-ag-cream transition-colors">Contact</Link></li>
+            <li><Link href="/links" className="text-gray-300 hover:text-ag-cream transition-colors">Links</Link></li>
+            <li><Link href="/terms" className="text-gray-300 hover:text-ag-cream transition-colors">Legal</Link></li>
+            <li><Link href="/blog" className="text-gray-300 hover:text-ag-cream transition-colors">Blog</Link></li>
           </ul>
           <div className="text-center text-gray-400 text-sm">
             <p>&copy; {new Date().getFullYear()} Angel Gabriel Aeronautics. All Rights Reserved.</p>

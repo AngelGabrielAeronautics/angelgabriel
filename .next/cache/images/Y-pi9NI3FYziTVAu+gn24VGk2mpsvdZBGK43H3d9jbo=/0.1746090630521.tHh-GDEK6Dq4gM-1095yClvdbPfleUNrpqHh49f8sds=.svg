@@ -1,0 +1,17 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gold background shield -->
+  <path d="M64 8L20 24V60C20 85.4 38.8 108.8 64 116C89.2 108.8 108 85.4 108 60V24L64 8Z" fill="#C9A04F"/>
+  
+  <!-- Wings design (white) -->
+  <path d="M64 28C53.5 28 45 36.5 45 47C45 57.5 53.5 66 64 66C74.5 66 83 57.5 83 47C83 36.5 74.5 28 64 28ZM64 62C55.7 62 49 55.3 49 47C49 38.7 55.7 32 64 32C72.3 32 79 38.7 79 47C79 55.3 72.3 62 64 62Z" fill="#FFFFFF"/>
+  
+  <path d="M36 56C36 56 45 74 64 74C83 74 92 56 92 56" stroke="#FFFFFF" stroke-width="4"/>
+  
+  <!-- Angel wings (white) -->
+  <path d="M40 80C40 80 52 92 64 92C76 92 88 80 88 80" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M45 85C45 85 54.5 95 64 95C73.5 95 83 85 83 85" stroke="#FFFFFF" stroke-width="4"/>
+  
+  <!-- AG initials (white) -->
+  <path d="M52 48L58 58H70L76 48L64 38L52 48Z" fill="#FFFFFF"/>
+  <path d="M58 63L54 67H74L70 63H58Z" fill="#FFFFFF"/>
+</svg> 

@@ -1,0 +1,127 @@
+import type { Metadata } from 'next'
+import { Montserrat, Open_Sans } from 'next/font/google'
+import './globals.css'
+import Navigation from './components/Navigation'
+import Footer from './components/Footer'
+import Script from 'next/script'
+import Analytics from './components/Analytics'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
+
+// Import fontsource packages
+import '@fontsource/open-sans/300.css'
+import '@fontsource/open-sans/400.css'
+import '@fontsource/open-sans/600.css'
+import '@fontsource/open-sans/700.css'
+import '@fontsource/montserrat/500.css'
+import '@fontsource/montserrat/600.css'
+import '@fontsource/montserrat/700.css'
+
+const montserrat = Montserrat({ 
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+})
+
+const openSans = Open_Sans({ 
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Angel Gabriel Aeronautics - Private Charter Flights',
+    template: '%s | Angel Gabriel Aeronautics'
+  },
+  description: 'Angel Gabriel Aeronautics offers premium private charter flights, safari packages, and specialized aviation services across Southern Africa and Botswana since 2013.',
+  keywords: 'private charter flights, air charter service, Southern Africa flights, Botswana air charter, lodge transfer flights, safari packages',
+  authors: [{ name: 'Angel Gabriel Aeronautics' }],
+  creator: 'Angel Gabriel Aeronautics',
+  publisher: 'Angel Gabriel Aeronautics',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://flyangelgabriel.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_ZA',
+    url: 'https://flyangelgabriel.com',
+    siteName: 'Angel Gabriel Aeronautics',
+    title: 'Angel Gabriel Aeronautics | Luxury Charter Flights in Southern Africa',
+    description: 'Experience unparalleled private air charter services with Southern Africa\'s remote destination specialist.',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Angel Gabriel Aeronautics',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Angel Gabriel Aeronautics | Private Charter Flights',
+    description: 'Premium private charter flights across Southern Africa and Botswana.',
+    images: ['/images/twitter-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className={`${montserrat.variable} ${openSans.variable} scroll-smooth`}>
+      <head>
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'}`} 
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'}', {
+                page_path: window.location.pathname,
+                send_page_view: true,
+              });
+            `,
+          }}
+        />
+      </head>
+      <body className="flex min-h-screen flex-col bg-ag-cream text-ag-text font-sans antialiased">
+        <Analytics />
+        <Navigation />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
+        <VercelAnalytics />
+      </body>
+    </html>
+  )
+} 

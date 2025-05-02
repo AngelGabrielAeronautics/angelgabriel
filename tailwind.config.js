@@ -20,19 +20,18 @@ module.exports = {
           800: '#075985',
           900: '#0c4a6e',
         },
-        // Angel Gabriel brand colors
+        // Angel Gabriel primary colors
         'ag-blue': {
-          DEFAULT: '#042250', // Primary blue
-          light: '#4F7BA3',
-          dark: '#132C4B',
-          darker: '#042250',
+          DEFAULT: '#005ea2', // Primary blue
+          light: '#73b3e7',
+          dark: '#1a4480',
+          darker: '#162e51',
         },
         'ag-gold': {
-          DEFAULT: '#e6bf93', // Gold accent color
-          light: '#fbddaf',
-          dark: '#b8845c',
+          DEFAULT: '#8a7237', // Gold accent color
+          light: '#dabe2e',
+          dark: '#936f38',
         },
-        // Neutral colors
         'ag-neutral': {
           50: '#f9f9f9',
           100: '#f0f0f0',
@@ -42,53 +41,45 @@ module.exports = {
           500: '#565c65',
           600: '#3d4551',
           700: '#252f3e',
-          800: '#171416',
-          900: '#000000',
+          800: '#171716',
+          900: '#1b1b1b',
         },
-        // Earth tones palette
-        'ag-earth': {
-          lightest: '#fbddaf', // Lightest cream
-          light: '#e6bf93', // Light beige
-          medium: '#b8845c', // Medium brown
-          dark: '#5f3b30', // Dark brown
-          darkest: '#241700', // Darkest brown
+        'ag-cyan': {
+          DEFAULT: '#00bde3', // Secondary blue/cyan
+          light: '#e7f6f8',
+          dark: '#009ec1',
         },
-        // Muted accent colors
-        'ag-muted': {
-          beige: '#ada684', // Beige accent
-          brown: '#5f3b30', // Brown accent
-          green: '#576158', // Muted green
-          gray: '#757464', // Muted gray
+        'ag-success': {
+          DEFAULT: '#00a91c',
+          light: '#ecf3ec',
+          dark: '#008817',
+        },
+        'ag-warning': {
+          DEFAULT: '#ffbe2e',
+          light: '#faf3d1',
+          dark: '#e5a000',
+        },
+        'ag-error': {
+          DEFAULT: '#d54309',
+          light: '#f4e3db',
+          dark: '#b21d38',
         },
         // Page background color
-        'ag-cream': '#fbddaf',
+        'ag-cream': '#e9e2cf',
         // Text Black
-        'ag-text-black': '#191410',
+        'ag-text-black': '#191100',
         // Secondary Dark
-        'ag-secondary-dark': '#5f3b30',
+        'ag-secondary-dark': '#343d3f',
         // Button color
         'ag-button': {
-          DEFAULT: '#5f3b30', // Brown button
-          hover: '#443732', // Darker brown on hover
-          active: '#5f3b30', // Original brown when active
+          DEFAULT: '#000000', // Changed from #89826d to black
+          hover: '#343d3f', // Updated from #181818 to #343d3f
+          active: '#303030', // Slightly lighter on active
         },
         // Text colors
         'ag-text': {
-          DEFAULT: '#171416', // Primary text color
-          light: '#fbddaf',   // Text on dark backgrounds
-        },
-        // Invert colors for accents
-        'ag-invert': {
-          blue: {
-            light: '#70A3C3',
-            DEFAULT: '#4F7BA3',
-            dark: '#042250',
-          },
-          teal: {
-            light: '#A0C4CF',
-            DEFAULT: '#5591A9',
-            dark: '#042250',
-          },
+          DEFAULT: '#191100', // Updated from #5a5443 to #191100
+          light: '#fefefe',   // Text on dark backgrounds
         },
       },
       fontFamily: {

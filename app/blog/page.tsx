@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import PageHeader from '../components/PageHeader';
 
 type BlogPost = {
   slug: string;
@@ -73,20 +74,15 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="relative bg-blue-600 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Blog</h1>
-          <p className="text-xl text-white max-w-3xl mx-auto">
-            Insights, updates, and stories from Angel Gabriel Aeronautics
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-ag-cream font-sans">
+      <PageHeader
+        title="Blog"
+        subtitle="Insights, updates, and stories from Angel Gabriel Aeronautics"
+      />
 
       <div className="container mx-auto px-4 py-12">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
@@ -107,20 +103,20 @@ export default function BlogPage() {
                       className="object-cover"
                     />
                   ) : (
-                    <div className="text-gray-500 p-4 text-center">
+                    <div className="text-slate-500 p-4 text-center font-sans">
                       {post.imageText}
                     </div>
                   )}
                 </div>
                 <div className="p-6">
                   <div className="flex items-center mb-2">
-                    <span className="text-sm text-blue-600 font-semibold">{post.category}</span>
+                    <span className="text-sm text-text-black font-semibold font-sans">{post.category}</span>
                     <span className="mx-2 text-gray-300">•</span>
-                    <span className="text-sm text-gray-500">{post.date}</span>
+                    <span className="text-sm text-slate-500 font-sans">{post.date}</span>
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">{post.title}</h2>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <div className="text-blue-600 font-semibold">Read more</div>
+                  <h2 className="text-xl font-light font-heading text-text-black mb-2">{post.title}</h2>
+                  <p className="text-text-black font-sans mb-4">{post.excerpt}</p>
+                  <div className="text-text-black font-medium font-sans hover:text-secondary-dark">Read more</div>
                 </div>
               </Link>
             </motion.div>

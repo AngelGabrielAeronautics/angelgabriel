@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import PageHeader from '../components/PageHeader';
+import QuoteBanner from '../components/QuoteBanner';
 
 export const metadata = {
   title: 'Gallery | Angel Gabriel Aeronautics',
@@ -7,7 +9,8 @@ export const metadata = {
 };
 
 export default function GalleryPage() {
-  // Gallery items with captions
+  // Gallery items with captions - This array will be removed
+  /*
   const galleryItems = [
     {
       image: "New Rates Sheets",
@@ -114,213 +117,76 @@ export default function GalleryPage() {
       caption: "Multi-aircraft flight on the Limpopo Valley Air Taxi"
     }
   ];
+  */
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="relative bg-blue-600 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Gallery</h1>
+    <div className="min-h-screen bg-ag-cream font-sans">
+      <PageHeader title="Gallery" />
+
+      {/* Instagram Section - Moved to top */}
+      <div className="container mx-auto px-4 pt-12 max-w-7xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-light font-heading text-text-black mb-4">Follow us on Instagram</h2>
+          <p className="text-xl text-text-black mb-8">@angel_gabriel_air</p>
+          <Link 
+            href="https://www.instagram.com/angel_gabriel_air"
+            className="inline-flex items-center justify-center px-8 py-4 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black font-sans"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit our Instagram
+          </Link>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Gallery Grid */}
+      <div className="container mx-auto px-4 pb-12 max-w-7xl">
+        {/* Gallery Grid - This section will be removed */}
+        {/*
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {galleryItems.map((item, index) => (
             <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="aspect-square bg-gray-100 relative flex items-center justify-center">
-                <div className="text-gray-500 p-4 text-center">
+                <div className="text-slate-500 p-4 text-center font-sans">
                   {item.image}
                 </div>
               </div>
               <div className="p-4">
-                <p className="text-gray-700 text-sm whitespace-pre-line">{item.caption}</p>
+                <p className="text-text-black text-sm whitespace-pre-line font-sans">{item.caption}</p>
               </div>
             </div>
           ))}
         </div>
+        */}
         
-        {/* Load More Button */}
-        <div className="text-center mb-16">
-          <button className="px-6 py-3 bg-gray-200 rounded-md text-gray-700 font-medium hover:bg-gray-300 transition-colors">
-            Load More
-          </button>
-        </div>
-        
-        {/* Instagram Section */}
-        <div className="text-center mb-20">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Follow us on Instagram</h2>
-          <p className="text-xl text-blue-600 mb-8">@angel_gabriel_air</p>
-          <button className="px-6 py-3 bg-gray-200 rounded-md text-gray-700 font-medium hover:bg-gray-300 transition-colors">
-            Load More
-          </button>
-        </div>
-        
-        {/* CTA Button */}
-        <div className="text-center mb-16">
-          <Link 
-            href="/quotes"
-            className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Request a charter quote
-          </Link>
+        {/* Inserted QuoteBanner Section */}
+        <div className="my-16">
+          <QuoteBanner 
+            backgroundSrc="/images/banners/gallery-quote-banner.jpg"
+            altText="Scenic flight over African landscapes"
+            title="Ready for Your Next Adventure?"
+            subtitle="Let Angel Gabriel Aeronautics take you there. Experience seamless travel and breathtaking views."
+            ctaText="Request Your Custom Quote"
+            ctaHref="/rates-and-quotes"
+          />
         </div>
         
         {/* About Image */}
-        <div className="mb-12">
+        <div className="mb-12 bg-white rounded-lg p-10 shadow-md hover:shadow-lg transition-shadow duration-300">
           <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-            <p className="text-gray-500 text-center p-4">Collage of Angel Gabriel Aeronautics' business activities.</p>
+            <p className="text-slate-500 text-center p-4 font-sans">Collage of Angel Gabriel Aeronautics' business activities.</p>
           </div>
         </div>
         
-        {/* About Section */}
+        {/* Banner linking to About Page - REPLACING the old About Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">More about Angel Gabriel</h2>
-          <div className="text-center max-w-3xl mx-auto">
-            <p className="text-gray-700">
-              Welcome to Angel Gabriel, your trusted air charter provider since 2013. We specialise in lodge transfer flights 
-              and private charters across Southern Africa and Botswana, offering unparalleled service, safety, and convenience. 
-              Whether you're travelling for business or leisure, our experienced team is committed to delivering seamless, 
-              personalised aviation solutions. At Angel Gabriel, we're dedicated to making every journey as memorable as the 
-              destinations we fly you to.
-            </p>
-          </div>
-        </div>
-        
-        {/* Newsletter and Contact Forms */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
-          {/* Newsletter */}
-          <div className="bg-blue-50 p-8 rounded-lg">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Subscribe to our newsletter</h2>
-              <form className="mt-4">
-                <div className="space-y-3">
-                  <div>
-                    <label htmlFor="newsletterEmail" className="sr-only">Email*</label>
-                    <input
-                      type="email"
-                      id="newsletterEmail"
-                      name="newsletterEmail"
-                      placeholder="Email*"
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-          
-          {/* Contact Form */}
-          <div className="bg-gray-50 p-8 rounded-lg">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact us</h2>
-              <form className="mt-4 space-y-4">
-                <div>
-                  <label htmlFor="contactFirstName" className="sr-only">First name</label>
-                  <input
-                    type="text"
-                    id="contactFirstName"
-                    name="contactFirstName"
-                    placeholder="First name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contactLastName" className="sr-only">Last name</label>
-                  <input
-                    type="text"
-                    id="contactLastName"
-                    name="contactLastName"
-                    placeholder="Last name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contactEmail" className="sr-only">Email*</label>
-                  <input
-                    type="email"
-                    id="contactEmail"
-                    name="contactEmail"
-                    placeholder="Email*"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contactMessage" className="sr-only">Message*</label>
-                  <textarea
-                    id="contactMessage"
-                    name="contactMessage"
-                    placeholder="Message*"
-                    rows={4}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-        
-        {/* CTA Button */}
-        <div className="mt-10 text-center mb-20">
-          <Link 
-            href="/quotes"
-            className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Request a charter quote
-          </Link>
-        </div>
-        
-        {/* Blog Posts */}
-        <div className="mt-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
-              <div className="aspect-video relative bg-gray-100 flex items-center justify-center">
-                <div className="text-gray-500 p-4 text-center">
-                  Featured article image
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving
-                </h3>
-                <Link href="/blog/exploring-the-wild" className="text-blue-600 hover:underline mt-2 inline-block">
-                  Read more
-                </Link>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
-              <div className="aspect-video relative bg-gray-100 flex items-center justify-center">
-                <div className="text-gray-500 p-4 text-center">
-                  Featured article image
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving
-                </h3>
-                <Link href="/blog/exploring-the-wild" className="text-blue-600 hover:underline mt-2 inline-block">
-                  Read more
-                </Link>
-              </div>
-            </div>
-          </div>
+          <QuoteBanner
+            backgroundSrc="/images/banners/about-us-gallery-promo.jpg" // Placeholder - Update with relevant image for gallery context
+            altText="Angel Gabriel Aeronautics aircraft fleet or scenic view related to company information"
+            title="Learn More About Us"
+            subtitle="Discover our history, our fleet, and what makes Angel Gabriel Aeronautics your premier choice for air charter."
+            ctaText="Explore Our About Page"
+            ctaHref="/about"
+          />
         </div>
       </div>
     </div>

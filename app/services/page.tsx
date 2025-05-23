@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import CallToAction from '../components/CallToAction';
+import PageHeader from '../components/PageHeader';
 
 export default function ServicesPage() {
   // Services data with descriptions
@@ -65,7 +67,7 @@ export default function ServicesPage() {
       id: 'slow-lounges',
       title: 'SLOW LOUNGES',
       image: '/images/services/VIP Lounge.jpg',
-      description: 'Relax in comfort before your flight in our exclusive slow lounges, featuring premium amenities, refreshments, and a tranquil environment away from the bustle.'
+      description: 'Relax in comfort before your flight in one of the slow lounges, featuring premium amenities, refreshments, and a tranquil environment away from the bustle.'
     },
     {
       id: 'concierge',
@@ -128,27 +130,17 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-ag-cream py-24">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-ag-text mb-6 font-heading">
-            Our Services
-          </h1>
-          <p className="text-xl max-w-3xl mx-auto text-ag-text">
-            Angel Gabriel Aeronautics offers a comprehensive range of aviation services tailored to your needs. Explore our offerings below.
-          </p>
-        </motion.div>
-
+    <div className="min-h-screen bg-ag-cream">
+      <PageHeader
+        title="Our Services"
+        subtitle="Angel Gabriel Aeronautics offers a comprehensive range of aviation services tailored to your needs. Explore our offerings below."
+      />
+      <div className="container mx-auto px-4 py-12">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
         >
           {services.map((service) => (
             <motion.div
@@ -165,20 +157,12 @@ export default function ServicesPage() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-light text-ag-text mb-3">
+                <h3 className="text-xl font-light font-heading text-text-black mb-3">
                   {service.title}
                 </h3>
-                <p className="text-ag-text-secondary">
+                <p className="text-text-black font-sans">
                   {service.description}
                 </p>
-                <div className="mt-4">
-                  <Link
-                    href={`#${service.id}`}
-                    className="text-ag-button hover:text-ag-button-hover transition-colors"
-                  >
-                    Learn more
-                  </Link>
-                </div>
               </div>
             </motion.div>
           ))}
@@ -190,12 +174,8 @@ export default function ServicesPage() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="text-center mt-16"
         >
-          <Link
-            href="/quotes"
-            className="inline-flex items-center justify-center px-8 py-3 border-2 border-ag-button text-lg font-medium rounded-md text-ag-text bg-transparent hover:bg-ag-button/10 transition-colors duration-300 md:py-4 md:text-xl md:px-10 font-heading"
-          >
-            Request a charter quote
-          </Link>
+        {/* CTA Section */}
+        <CallToAction />
         </motion.div>
       </div>
     </div>

@@ -5,13 +5,16 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import Script from 'next/script'
 import Analytics from './components/Analytics'
+import { Toaster } from 'react-hot-toast'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
+import { Suspense } from 'react'
 
 // Import fontsource packages
 import '@fontsource/open-sans/300.css'
 import '@fontsource/open-sans/400.css'
 import '@fontsource/open-sans/600.css'
 import '@fontsource/open-sans/700.css'
+import '@fontsource/montserrat/300.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
 import '@fontsource/montserrat/700.css'
@@ -113,8 +116,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex min-h-screen flex-col bg-ag-cream text-ag-text font-sans antialiased">
+      <body suppressHydrationWarning className="flex min-h-screen flex-col bg-ag-cream text-ag-text font-sans antialiased">
+        {/* Toast notifications */}
+        <Toaster position="top-right" />
+        <Suspense fallback={null}>
         <Analytics />
+        </Suspense>
         <Navigation />
         <main className="flex-grow">
           {children}

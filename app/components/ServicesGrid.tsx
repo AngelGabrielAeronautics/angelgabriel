@@ -163,7 +163,7 @@ export default function ServicesGrid() {
               )}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="p-4 text-center w-full">
-                  <h3 className={`text-white font-light tracking-wide drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 break-words hyphens-auto ${
+                  <h3 className={`text-white font-light font-heading tracking-wide drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 break-words hyphens-auto ${
                     service.isLarge ? 'text-6xl md:text-6xl lg:text-6xl' : 'text-xl md:text-3xl lg:text-4xl'
                   }`}>
                     {service.title}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   FaArrowRight, 
   FaExchangeAlt, 
@@ -14,6 +14,9 @@ import {
   FaShuttleVan, 
   FaShieldAlt 
 } from 'react-icons/fa';
+import ReactDatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import toast from 'react-hot-toast'
 
 type FormData = {
   firstName: string;
@@ -38,6 +41,20 @@ type FormData = {
   subscribe: boolean;
 };
 
+/** Parse a YYYY-MM-DD string into a local Date without timezone shifting */
+const parseDateString = (value: string): Date => {
+  const [year, month, day] = value.split('-').map(Number);
+  return new Date(year, month - 1, day);
+};
+
+/** Format a Date object into a YYYY-MM-DD string */
+const formatDateString = (date: Date): string => {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+};
+
 export default function QuoteRequestForm({ 
   initialOpen = true,
   isAccordion = false,
@@ -50,7 +67,8 @@ export default function QuoteRequestForm({
   const [isOpen, setIsOpen] = useState(initialOpen);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-
+  const [travelDate, setTravelDate] = useState('');
+  const [returnDate, setReturnDate] = useState('');
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -73,6 +91,23 @@ export default function QuoteRequestForm({
     notes: '',
     subscribe: false,
   });
+
+  const [additionalRoutes, setAdditionalRoutes] = useState<{ from: string; to: string; date: string }[]>([]);
+
+  const today = new Date();
+  const minDate = formatDateString(today); // Today's date in YYYY-MM-DD format
+  const maxDate = (() => {
+    const temp = new Date();
+    temp.setMonth(temp.getMonth() + 18);
+    return formatDateString(temp);
+  })(); // 18 months from today
+
+  useEffect(() => {
+    if (returnDate && travelDate && new Date(returnDate) < new Date(travelDate)) {
+      // clear return date to force user re-entry
+      setReturnDate('');
+    }
+  }, [travelDate]);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -102,24 +137,67 @@ export default function QuoteRequestForm({
     }
   };
 
+  const handleRoutingTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target as HTMLInputElement;
+    setFormData((prev) => ({ ...prev, routingType: value as 'oneWay' | 'return' | 'multiDestination' }));
+
+    // Reset additional routes when routing type changes
+    if (value === 'oneWay') {
+      setAdditionalRoutes([{ from: '', to: '', date: '' }]);
+    } else if (value === 'return') {
+      setAdditionalRoutes([{ from: '', to: '', date: '' }, { from: '', to: '', date: '' }]);
+    } else if (value === 'multiDestination') {
+      setAdditionalRoutes([{ from: '', to: '', date: '' }, { from: '', to: '', date: '' }, { from: '', to: '', date: '' }]);
+    } else {
+      setAdditionalRoutes([]);
+    }
+  };
+
+  const handleAdditionalRouteChange = (
+    idx: number,
+    field: string,
+    value: string
+  ) => {
+    setAdditionalRoutes((prev) => {
+      const updated = [...prev];
+      // update the specific field
+      updated[idx] = { ...updated[idx], [field]: value };
+      // if the 'to' field changed, auto-fill next 'from'
+      if (field === 'to' && idx + 1 < updated.length) {
+        updated[idx + 1] = { ...updated[idx + 1], from: value };
+      }
+      // if a date field changes, clear all subsequent dates to force re-entry
+      if (field === 'date') {
+        for (let i = idx + 1; i < updated.length; i++) {
+          updated[i] = { ...updated[i], date: '' };
+        }
+      }
+      return updated;
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitMessage(null);
 
     try {
-      // In a real app, you would send this data to your API
-      console.log('Form data submitted:', formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSubmitMessage({
-        type: 'success',
-        text: 'Your quote request has been submitted successfully. We will contact you shortly.',
+      const response = await fetch('/api/quote-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formData, travelDate, returnDate, additionalRoutes }),
       });
-      
-      // Reset form
+      const result = await response.json();
+      // Handle server error
+      if (!response.ok || !result.success) {
+        const errMsg = result.error || 'Unknown server error';
+        console.error('Quote request failed:', errMsg);
+        toast.error(`Error submitting form: ${errMsg}`);
+        return;
+      }
+      // Success path
+      toast.success('Your quote request has been submitted successfully!');
+      // Reset form fields
       setFormData({
         firstName: '',
         lastName: '',
@@ -142,11 +220,12 @@ export default function QuoteRequestForm({
         notes: '',
         subscribe: false,
       });
+      setTravelDate('');
+      setReturnDate('');
+      setAdditionalRoutes([{ from: '', to: '', date: '' }]);
     } catch (error) {
-      setSubmitMessage({
-        type: 'error',
-        text: 'There was an error submitting your request. Please try again.',
-      });
+      console.error(error);
+      toast.error('There was an error submitting your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -156,13 +235,13 @@ export default function QuoteRequestForm({
     <form onSubmit={handleSubmit} className="space-y-10 bg-white px-8 py-8 rounded-md shadow-sm">
       {/* Booker Section */}
       <div className="pb-6 border-b border-gray-100">
-        <h3 className="text-xl font-light mb-4 text-ag-text flex items-center">
+        <h3 className="text-xl font-light font-heading text-text-black mb-4 flex items-center">
           <span className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center text-sm mr-3">1</span>
           Booker
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-600 mb-1">
+            <label htmlFor="firstName" className="block text-sm font-medium text-text-black mb-1 font-sans">
               First name <span className="text-red-500">*</span>
             </label>
             <input 
@@ -176,7 +255,7 @@ export default function QuoteRequestForm({
             />
           </div>
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-600 mb-1">
+            <label htmlFor="lastName" className="block text-sm font-medium text-text-black mb-1 font-sans">
               Last name <span className="text-red-500">*</span>
             </label>
             <input 
@@ -191,7 +270,7 @@ export default function QuoteRequestForm({
           </div>
         </div>
         <div className="mt-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-text-black mb-1 font-sans">
             Email <span className="text-red-500">*</span>
           </label>
           <div className="md:w-1/2">
@@ -210,7 +289,7 @@ export default function QuoteRequestForm({
       
       {/* Routing Section */}
       <div className="pb-6 border-b border-gray-100">
-        <h3 className="text-xl font-light mb-4 text-ag-text flex items-center">
+        <h3 className="text-xl font-light font-heading text-text-black mb-4 flex items-center">
           <span className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center text-sm mr-3">2</span>
           Routing <span className="text-red-500 ml-1">*</span>
         </h3>
@@ -222,10 +301,10 @@ export default function QuoteRequestForm({
               name="routingType" 
               value="oneWay" 
               checked={formData.routingType === 'oneWay'}
-              onChange={handleRadioChange}
-              className="h-4 w-4 text-black focus:ring-black border-gray-300" 
+              onChange={handleRoutingTypeChange}
+              className="h-4 w-4 accent-black text-black border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="oneWay" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="oneWay" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaArrowRight className="mr-1 text-gray-500 text-lg" />
               One way
             </label>
@@ -237,10 +316,10 @@ export default function QuoteRequestForm({
               name="routingType" 
               value="return" 
               checked={formData.routingType === 'return'}
-              onChange={handleRadioChange}
-              className="h-4 w-4 text-black focus:ring-black border-gray-300" 
+              onChange={handleRoutingTypeChange}
+              className="h-4 w-4 accent-black text-black border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="return" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="return" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaExchangeAlt className="mr-1 text-gray-500 text-lg" />
               Return
             </label>
@@ -252,75 +331,214 @@ export default function QuoteRequestForm({
               name="routingType" 
               value="multiDestination" 
               checked={formData.routingType === 'multiDestination'}
-              onChange={handleRadioChange}
-              className="h-4 w-4 text-black focus:ring-black border-gray-300" 
+              onChange={handleRoutingTypeChange}
+              className="h-4 w-4 accent-black text-black border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="multiDestination" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="multiDestination" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaRoute className="mr-1 text-gray-500 text-lg" />
               Multi-destination
             </label>
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div>
-            <label htmlFor="fromLocation" className="block text-sm font-medium text-gray-600 mb-1">
-              From <span className="text-red-500">*</span>
-            </label>
-            <input 
-              type="text" 
-              id="fromLocation" 
-              name="fromLocation"
-              value={formData.fromLocation}
-              onChange={handleTextChange}
-              placeholder="e.g. Johannesburg, OR Tambo"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
-              required 
-            />
+        {/* Additional Fields for One Way */}
+        {formData.routingType === 'oneWay' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label htmlFor="fromLocation" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                From <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="fromLocation" 
+                name="fromLocation"
+                value={formData.fromLocation}
+                onChange={handleTextChange}
+                placeholder="e.g. Johannesburg, OR Tambo"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                required 
+              />
+            </div>
+            <div>
+              <label htmlFor="toLocation" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                To <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="toLocation" 
+                name="toLocation"
+                value={formData.toLocation}
+                onChange={handleTextChange}
+                placeholder="e.g. Cape Town International"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                required 
+              />
+            </div>
+            <div className="mb-6 relative overflow-visible">
+              <label htmlFor="oneWayDate" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Date of Travel <span className="text-red-500">*</span>
+              </label>
+              <ReactDatePicker
+                key={`travel-${formData.routingType}`}
+                selected={travelDate ? parseDateString(travelDate) : null}
+                onChange={(d: Date | null) => setTravelDate(d ? formatDateString(d) : '')}
+                minDate={parseDateString(minDate)}
+                maxDate={parseDateString(maxDate)}
+                dateFormat="dd/MM/yyyy"
+                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm"
+                placeholderText="dd/mm/yyyy"
+                shouldCloseOnSelect={true}
+                closeOnScroll={true}
+                required 
+              />
+            </div>
           </div>
-          <div>
-            <label htmlFor="toLocation" className="block text-sm font-medium text-gray-600 mb-1">
-              To <span className="text-red-500">*</span>
-            </label>
-            <input 
-              type="text" 
-              id="toLocation" 
-              name="toLocation"
-              value={formData.toLocation}
-              onChange={handleTextChange}
-              placeholder="e.g. Cape Town International"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
-              required 
-            />
+        )}
+
+        {/* Return Flight Fields (same as one-way plus return date) */}
+        {formData.routingType === 'return' && (
+          <>
+            {/* From & To inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+                <label htmlFor="fromLocation" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                From <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                  id="fromLocation"
+                  name="fromLocation"
+                value={formData.fromLocation}
+                onChange={handleTextChange}
+                placeholder="e.g. Johannesburg, OR Tambo"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                required 
+              />
+            </div>
+            <div>
+                <label htmlFor="toLocation" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                To <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                  id="toLocation"
+                  name="toLocation"
+                value={formData.toLocation}
+                onChange={handleTextChange}
+                placeholder="e.g. Cape Town International"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                required 
+              />
+            </div>
+            </div>
+            {/* Date of Travel picker */}
+            <div className="mb-6 relative overflow-visible">
+              <label htmlFor="travelDate" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Date of Travel <span className="text-red-500">*</span>
+              </label>
+              <ReactDatePicker
+                key={`travel-${formData.routingType}`}
+                selected={travelDate ? parseDateString(travelDate) : null}
+                onChange={(d: Date | null) => setTravelDate(d ? formatDateString(d) : '')}
+                minDate={parseDateString(minDate)}
+                maxDate={parseDateString(maxDate)}
+                dateFormat="dd/MM/yyyy"
+                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm"
+                placeholderText="dd/mm/yyyy"
+                shouldCloseOnSelect={true}
+                closeOnScroll={true}
+                required 
+              />
+            </div>
+            {/* Return Date picker */}
+            <div className="mb-6 relative overflow-visible">
+              <label htmlFor="returnDate" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Return Date <span className="text-red-500">*</span>
+              </label>
+              <ReactDatePicker
+                key={`return-${formData.routingType}-${returnDate}`}
+                selected={returnDate ? parseDateString(returnDate) : null}
+                onChange={(d: Date | null) => setReturnDate(d ? formatDateString(d) : '')}
+                minDate={travelDate ? parseDateString(travelDate) : parseDateString(minDate)}
+                maxDate={parseDateString(maxDate)}
+                dateFormat="dd/MM/yyyy"
+                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm"
+                placeholderText="dd/mm/yyyy"
+                shouldCloseOnSelect={true}
+                closeOnScroll={true}
+                required 
+              />
+            </div>
+          </>
+        )}
+
+        {/* Additional Fields for Multi-Destination */}
+        {formData.routingType === 'multiDestination' && additionalRoutes.map((route, index) => (
+          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label htmlFor={`multiFromLocation${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
+                From <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                id={`multiFromLocation${index}`} 
+                name={`multiFromLocation${index}`}
+                value={route.from}
+                onChange={(e) => handleAdditionalRouteChange(index, 'from', e.target.value)}
+                placeholder="e.g. Johannesburg, OR Tambo"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                required 
+              />
+            </div>
+            <div>
+              <label htmlFor={`multiToLocation${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
+                To <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                id={`multiToLocation${index}`} 
+                name={`multiToLocation${index}`}
+                value={route.to}
+                onChange={(e) => handleAdditionalRouteChange(index, 'to', e.target.value)}
+                placeholder="e.g. Cape Town International"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                required 
+              />
+            </div>
+            {/* Date of Travel picker */}
+            <div>
+              <label htmlFor={`multiDate${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Date of Travel <span className="text-red-500">*</span>
+              </label>
+              <ReactDatePicker
+                key={`multi-${index}-${formData.routingType}-${route.date}`}
+                selected={route.date ? parseDateString(route.date) : null}
+                onChange={(d: Date | null) => handleAdditionalRouteChange(index, 'date', d ? formatDateString(d) : '')}
+                minDate={
+                  index > 0 && additionalRoutes[index - 1].date
+                    ? parseDateString(additionalRoutes[index - 1].date)
+                    : parseDateString(minDate)
+                }
+                maxDate={parseDateString(maxDate)}
+                dateFormat="dd/MM/yyyy"
+                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm"
+                placeholderText="dd/mm/yyyy"
+                shouldCloseOnSelect={true}
+                closeOnScroll={true}
+                required 
+              />
+            </div>
           </div>
-        </div>
-        
-        <div>
-          <label htmlFor="passengers" className="block text-sm font-medium text-gray-600 mb-1">
-            Number of passengers <span className="text-red-500">*</span>
-          </label>
-          <div className="md:w-1/2">
-            <input 
-              type="number" 
-              id="passengers" 
-              name="passengers"
-              value={formData.passengers}
-              onChange={handleTextChange}
-              min="1" 
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
-              required 
-            />
-          </div>
-        </div>
+        ))}
       </div>
       
       {/* Aircraft Section */}
       <div className="pb-6 border-b border-gray-100">
-        <h3 className="text-xl font-light mb-4 text-ag-text flex items-center">
+        <h3 className="text-xl font-light font-heading text-text-black mb-4 flex items-center">
           <span className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center text-sm mr-3">3</span>
           Aircraft
         </h3>
-        <p className="text-sm text-gray-500 mb-4 italic">Select your aircraft preferences (optional)</p>
+        <p className="text-sm text-slate-500 mb-4 italic font-sans">Select your aircraft preferences (optional)</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-md">
           <div className="flex items-center">
             <input 
@@ -329,9 +547,9 @@ export default function QuoteRequestForm({
               name="aircraft.mostEconomical"
               checked={formData.aircraft.mostEconomical}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="mostEconomical" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="mostEconomical" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaDollarSign className="mr-1 text-gray-500 text-lg" />
               Most economical
             </label>
@@ -343,9 +561,9 @@ export default function QuoteRequestForm({
               name="aircraft.pressurised"
               checked={formData.aircraft.pressurised}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="pressurised" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="pressurised" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaCompress className="mr-1 text-gray-500 text-lg" />
               Pressurised
             </label>
@@ -357,9 +575,9 @@ export default function QuoteRequestForm({
               name="aircraft.twinEngine"
               checked={formData.aircraft.twinEngine}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="twinEngine" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="twinEngine" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaFighterJet className="mr-1 text-gray-500 text-lg" />
               Twin engine
             </label>
@@ -369,11 +587,11 @@ export default function QuoteRequestForm({
       
       {/* Bolt-ons Section */}
       <div className="pb-6 border-b border-gray-100">
-        <h3 className="text-xl font-light mb-4 text-ag-text flex items-center">
+        <h3 className="text-xl font-light font-heading text-text-black mb-4 flex items-center">
           <span className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center text-sm mr-3">4</span>
           Bolt-ons
         </h3>
-        <p className="text-sm text-gray-500 mb-4 italic">Select any additional services you may require (optional)</p>
+        <p className="text-sm text-slate-500 mb-4 italic font-sans">Select any additional services you may require (optional)</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-md">
           <div className="flex items-center p-2 hover:bg-white transition-colors duration-200 rounded">
             <input 
@@ -382,9 +600,9 @@ export default function QuoteRequestForm({
               name="boltOns.meetAndGreet"
               checked={formData.boltOns.meetAndGreet}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="meetAndGreet" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="meetAndGreet" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaHandshake className="mr-1 text-gray-500 text-lg" />
               Meet and greet off connecting flight
             </label>
@@ -396,9 +614,9 @@ export default function QuoteRequestForm({
               name="boltOns.airportShuttle"
               checked={formData.boltOns.airportShuttle}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="airportShuttle" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="airportShuttle" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaShuttleVan className="mr-1 text-gray-500 text-lg" />
               Airport / hotel shuttle
             </label>
@@ -410,9 +628,9 @@ export default function QuoteRequestForm({
               name="boltOns.fullMeal"
               checked={formData.boltOns.fullMeal}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="fullMeal" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="fullMeal" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaUtensils className="mr-1 text-gray-500 text-lg" />
               Full in flight meal
             </label>
@@ -424,9 +642,9 @@ export default function QuoteRequestForm({
               name="boltOns.security"
               checked={formData.boltOns.security}
               onChange={handleCheckboxChange}
-              className="h-4 w-4 text-black focus:ring-black rounded border-gray-300" 
+              className="h-4 w-4 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
             />
-            <label htmlFor="security" className="ml-2 flex items-center text-sm text-gray-700 font-medium">
+            <label htmlFor="security" className="ml-2 flex items-center text-sm text-text-black font-medium font-sans">
               <FaShieldAlt className="mr-1 text-gray-500 text-lg" />
               Personal security CPO
             </label>
@@ -436,7 +654,7 @@ export default function QuoteRequestForm({
       
       {/* Notes / Comments Section */}
       <div className="pb-6 border-b border-gray-100">
-        <h3 className="text-xl font-light mb-4 text-ag-text flex items-center">
+        <h3 className="text-xl font-light font-heading text-text-black mb-4 flex items-center">
           <span className="h-7 w-7 rounded-full bg-black text-white flex items-center justify-center text-sm mr-3">5</span>
           Notes / comments
         </h3>
@@ -459,9 +677,9 @@ export default function QuoteRequestForm({
           name="subscribe"
           checked={formData.subscribe}
           onChange={handleCheckboxChange} 
-          className="h-5 w-5 text-black focus:ring-black rounded border-gray-300" 
+          className="h-5 w-5 accent-black text-black rounded border-gray-300 focus:ring-2 focus:ring-black focus:border-black" 
         />
-        <label htmlFor="subscribe" className="ml-2 block text-sm text-gray-700">
+        <label htmlFor="subscribe" className="ml-2 block text-sm text-text-black font-medium font-sans">
           Yes, subscribe me to receive news and special offers from Angel Gabriel Aeronautics
         </label>
       </div>
@@ -496,7 +714,7 @@ export default function QuoteRequestForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-ag-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-300 shadow-sm"
+        className="w-full px-8 py-4 border border-transparent text-base font-medium font-sans rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-300 shadow-sm"
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center">
@@ -519,7 +737,7 @@ export default function QuoteRequestForm({
           className="w-full p-6 text-left flex justify-between items-center bg-white border-b border-gray-200"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <h2 className="text-2xl font-light text-gray-800 font-heading">
+          <h2 className="text-2xl font-light font-heading text-text-black">
             Request a charter quote
           </h2>
           <svg 

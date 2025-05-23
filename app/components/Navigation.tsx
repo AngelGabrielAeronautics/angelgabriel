@@ -41,28 +41,7 @@ const Navigation = () => {
     { href: '/', label: 'Home' },
     { href: '/contact', label: 'Contact' },
     { href: '/rates-and-quotes', label: 'Rates & Quotes' },
-  ]
-
-  const servicesMenuItems = [
-    { href: '/services/private-charters', label: 'Private Charters' },
-    { href: '/services/fixed-rate-charters', label: 'Fixed Rate Charters' },
-    { href: '/services/safari-packages', label: 'Safari Packages' },
-    { href: '/services/flying-safaris', label: 'Flying Safaris' },
-    { href: '/services/golf-safaris', label: 'Golf Safaris' },
-    { href: '/services/airport-shuttles', label: 'Airport Shuttles' },
-    { href: '/services/vip-assistance', label: 'VIP Assistance' },
-    { href: '/services/recreational-flights', label: 'Recreational Flights' },
-    { href: '/services/baggage-storage', label: 'Baggage Storage' },
-    { href: '/services/slow-lounges', label: 'Slow Lounges' },
-    { href: '/services/concierge', label: 'Concierge Services' },
-    { href: '/services/aircraft-management', label: 'Aircraft Management' },
-    { href: '/services/cargo', label: 'Cargo Movements' },
-    { href: '/services/aircraft-classifieds', label: 'Aircraft Classifieds' },
-    { href: '/services/security', label: 'Security & Protection' },
-    { href: '/services/alliance', label: 'Alliance Program' },
-  ]
-
-  const mainMenuItems2 = [
+    { href: '/services', label: 'Services' },
     { href: '/fleet', label: 'Fleet' },
     { href: '/gallery', label: 'Gallery' },
     { href: '/about', label: 'About' },
@@ -77,19 +56,12 @@ const Navigation = () => {
     { href: '/cookie-policy', label: 'Cookie Policy' },
   ]
 
-  const mainMenuItems = [
-    ...mainMenuItems1,
-    { href: '/fleet', label: 'Fleet' },
-    { href: '/services', label: 'Services' },
-    ...mainMenuItems2.filter(item => item.href !== '/fleet')
-  ];
-
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-ag-secondary-dark shadow-md' : 'bg-transparent'
+      isScrolled ? 'bg-gray-950/60 shadow-md' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
-        <div className={`flex justify-between items-start ${isScrolled ? 'h-16' : 'h-16'}`}>
+        <div className={`flex justify-between items-start ${isScrolled ? 'h-20' : 'h-16'}`}>
           {/* Logo - reduced by 30% and with no gap at top */}
           <Link href="/" className="flex items-start pt-0 mt-0">
             <div className="w-[126px] md:w-[140px] lg:w-[168px] h-auto">
@@ -137,7 +109,7 @@ const Navigation = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-ag-neutral-900/60 z-40"
+              className="fixed inset-0 bg-ag-neutral-900/80 z-40"
               onClick={() => setIsOpen(false)}
             />
             
@@ -147,16 +119,16 @@ const Navigation = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-xl overflow-y-auto z-50"
+              className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-ag-cream shadow-xl overflow-y-auto z-50"
             >
               <div className="p-5 border-b border-ag-neutral-200 flex justify-between items-center">
-                <h2 className="text-xl font-light font-heading text-ag-text">Menu</h2>
+                <h2 className="text-xl font-light font-heading text-text-black">Menu</h2>
                 <button
                   className="p-2"
                   onClick={() => setIsOpen(false)}
                   aria-label="Close menu"
                 >
-                  <svg className="w-6 h-6 text-ag-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
@@ -164,32 +136,21 @@ const Navigation = () => {
               
               <div className="p-5">
                 <div className="flex flex-col space-y-0">
-                  {mainMenuItems.map((item) => (
+                  {mainMenuItems1.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-ag-text hover:text-ag-secondary-dark transition-colors duration-300 py-3 border-b border-ag-neutral-100"
+                      className="text-text-black hover:text-secondary-dark transition-colors duration-300 py-3 border-b border-ag-neutral-100 font-sans"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
                     </Link>
                   ))}
                   
-                  {/* Services Dropdown */}
-                  <div className="border-b border-ag-neutral-100">
-                    <Link 
-                      href="/services"
-                      className="w-full text-left flex items-center justify-between text-ag-text hover:text-ag-secondary-dark py-3"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Services</span>
-                    </Link>
-                  </div>
-                  
                   {/* Legal Dropdown */}
                   <div className="border-b border-ag-neutral-100">
                     <button 
-                      className="w-full text-left flex items-center justify-between text-ag-text hover:text-ag-secondary-dark py-3"
+                      className="w-full text-left flex items-center justify-between text-text-black hover:text-secondary-dark py-3 font-sans"
                       onClick={() => toggleDropdown('legal')}
                     >
                       <span>Legal</span>
@@ -215,7 +176,7 @@ const Navigation = () => {
                             <Link
                               key={item.href}
                               href={item.href}
-                              className="block py-2 text-sm text-ag-text hover:text-ag-secondary-dark"
+                              className="block py-2 text-sm text-text-black hover:text-secondary-dark font-sans"
                               onClick={() => setIsOpen(false)}
                             >
                               {item.label}
@@ -229,7 +190,7 @@ const Navigation = () => {
                   <div className="pt-6 pb-2">
                     <Link
                       href="/rates-and-quotes"
-                      className="bg-ag-button text-ag-text-light px-6 py-3 rounded-md block text-center hover:bg-ag-button-hover transition-colors duration-300 font-light"
+                      className="bg-black text-white px-8 py-4 rounded-md block text-center hover:bg-gray-900 transition-colors duration-300 font-medium font-sans"
                       onClick={() => setIsOpen(false)}
                     >
                       Request a Quote
@@ -238,22 +199,22 @@ const Navigation = () => {
                   
                   {/* Social Media Icons */}
                   <div className="flex justify-center space-x-4 mt-8 pt-6 border-t border-ag-neutral-100">
-                    <a href="https://www.facebook.com/AngelGabrielAeronautics" className="text-ag-text hover:text-ag-secondary-dark transition-colors" aria-label="Facebook">
+                    <a href="https://www.facebook.com/AngelGabrielAeronautics" className="text-text-black hover:text-secondary-dark transition-colors" aria-label="Facebook">
                       <FaFacebook size={24} />
                     </a>
-                    <a href="https://x.com/AngelGabrielAir" className="text-ag-text hover:text-ag-secondary-dark transition-colors" aria-label="X (formerly Twitter)">
+                    <a href="https://x.com/AngelGabrielAir" className="text-text-black hover:text-secondary-dark transition-colors" aria-label="X (formerly Twitter)">
                       <FaXTwitter size={24} />
                     </a>
-                    <a href="https://www.instagram.com/angel_gabriel_air" className="text-ag-text hover:text-ag-secondary-dark transition-colors" aria-label="Instagram">
+                    <a href="https://www.instagram.com/angel_gabriel_air" className="text-text-black hover:text-secondary-dark transition-colors" aria-label="Instagram">
                       <FaInstagram size={24} />
                     </a>
-                    <a href="https://www.youtube.com/user/AngelGabrielAero" className="text-ag-text hover:text-ag-secondary-dark transition-colors" aria-label="YouTube">
+                    <a href="https://www.youtube.com/user/AngelGabrielAero" className="text-text-black hover:text-secondary-dark transition-colors" aria-label="YouTube">
                       <FaYoutube size={24} />
                     </a>
-                    <a href="https://www.linkedin.com/company/angel-gabriel-aeronautics/" className="text-ag-text hover:text-ag-secondary-dark transition-colors" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/angel-gabriel-aeronautics/" className="text-text-black hover:text-secondary-dark transition-colors" aria-label="LinkedIn">
                       <FaLinkedin size={24} />
                     </a>
-                    <a href="https://za.pinterest.com/angelgabrielaeronautics" className="text-ag-text hover:text-ag-secondary-dark transition-colors" aria-label="Pinterest">
+                    <a href="https://za.pinterest.com/angelgabrielaeronautics" className="text-text-black hover:text-secondary-dark transition-colors" aria-label="Pinterest">
                       <FaPinterest size={24} />
                     </a>
                   </div>

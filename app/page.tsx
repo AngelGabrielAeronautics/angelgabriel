@@ -205,7 +205,7 @@ export default function Home() {
       </motion.section>
 
       {/* Quote Request Form Section - Accordion Style */}
-      <section className="py-16 bg-ag-cream">
+      <section className="pt-8 pb-16 bg-ag-cream">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

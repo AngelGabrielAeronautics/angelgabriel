@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/dylan/Library/CloudStorage/GoogleDrive-dylan@angelgabriel.co.za/My Drive/Angel Gabriel Aeronautics/Marketing Department/Websites/2025 Website/app/layout\":[\"static/media/4f05ba3a6752a328-s.p.woff2\",\"static/media/3d9ea938b6afa941-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

@@ -47,7 +47,6 @@ const Navigation = () => {
     { href: '/about', label: 'About' },
     { href: '/links', label: 'Links' },
     { href: '/blog', label: 'Blog' },
-    { href: '/style-guide', label: 'Style Guide' },
   ]
 
   const legalMenuItems = [

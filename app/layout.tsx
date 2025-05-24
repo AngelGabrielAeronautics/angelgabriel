@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: '/icon.png',
+  },
   metadataBase: new URL('https://flyangelgabriel.com'),
   alternates: {
     canonical: '/',

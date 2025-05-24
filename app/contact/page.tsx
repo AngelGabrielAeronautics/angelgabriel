@@ -6,11 +6,6 @@ import QuoteRequestForm from '../components/QuoteRequestForm';
 import Image from 'next/image';
 import MapEmbed from '../components/MapEmbed';
 
-export const metadata = {
-  title: 'Contact Us | Angel Gabriel Aeronautics',
-  description: 'Contact Angel Gabriel Aeronautics for charter quotes, flight operations, and general inquiries. Our team is ready to assist you.',
-};
-
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);

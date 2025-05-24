@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PageHeader from '../components/PageHeader';
 import CallToAction from '../components/CallToAction';
 import FleetCarousel from '../components/FleetCarousel';
+import AnimatedServiceCollage from '../components/AnimatedServiceCollage';
 
 export const metadata = {
   title: 'Southern African Fleet | Angel Gabriel Aeronautics',
@@ -433,6 +434,13 @@ export default function FleetPage() {
         
         {/* CTA Section */}
         <CallToAction href="/rates-and-quotes" linkText="Request a charter quote" />
+
+        {/* Animated Service Collage Section */}
+        <div className="mt-20 mb-12">
+          <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
+            <AnimatedServiceCollage />
+          </div>
+        </div>
       </div>
     </div>
   );

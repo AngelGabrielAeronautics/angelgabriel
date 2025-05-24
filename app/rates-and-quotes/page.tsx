@@ -91,17 +91,6 @@ export default function RatesAndQuotesPage() {
             <div className="relative w-full aspect-video rounded-lg overflow-hidden">
               {/* Animated collage of service images */}
               <AnimatedServiceCollage />
-              {/* Overlay text and CTA */}
-              <div className="absolute inset-0 flex items-center justify-center px-4">
-                <div className="bg-black/60 text-center p-7 w-full">
-                  <h2 className="text-4xl md:text-5xl font-light font-heading text-hero-text mb-4">Explore Our Services</h2>
-                  <p className="text-xl text-hero-text mb-8 max-w-3xl mx-auto font-sans">From private charters to cargo movements, discover how we can elevate your travel experience.</p>
-                  <Link href="/services" className="inline-flex items-center justify-center px-7 py-2 bg-yellow-500 text-text-black font-medium font-sans rounded-md hover:bg-yellow-600 transition-colors duration-300">
-                    <FaBinoculars className="w-5 h-5 mr-2" />
-                    View Services
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         </motion.div>

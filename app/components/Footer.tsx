@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin, FaPinterest } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import QuoteBanner from './QuoteBanner';
+import toast from 'react-hot-toast';
 
 export default function Footer() {
   const [contactFormData, setContactFormData] = useState({
@@ -15,7 +16,10 @@ export default function Footer() {
     message: ''
   });
 
+  const [isContactSubmitting, setIsContactSubmitting] = useState(false);
+
   const [subscribeEmail, setSubscribeEmail] = useState('');
+  const [isSubscribeSubmitting, setIsSubscribeSubmitting] = useState(false);
 
   const handleContactChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -25,25 +29,59 @@ export default function Footer() {
     }));
   };
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle contact form submission
-    console.log('Contact form data:', contactFormData);
-    // Reset form
-    setContactFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      message: ''
-    });
+    setIsContactSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(contactFormData),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast.success('Your message has been sent successfully!');
+        setContactFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        toast.error(result.error || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Footer contact form submission error:', error);
+      toast.error('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsContactSubmitting(false);
+    }
   };
 
-  const handleSubscribeSubmit = (e: React.FormEvent) => {
+  const handleSubscribeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter subscription
-    console.log('Subscribe email:', subscribeEmail);
-    // Reset form
-    setSubscribeEmail('');
+    setIsSubscribeSubmitting(true);
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: subscribeEmail }),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast.success('Successfully subscribed to newsletter!');
+        setSubscribeEmail('');
+      } else {
+        toast.error(result.error || 'Failed to subscribe. Please try again.');
+      }
+    } catch (error) {
+      console.error('Footer newsletter subscription error:', error);
+      toast.error('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubscribeSubmitting(false);
+    }
   };
 
   return (
@@ -126,9 +164,10 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
+                disabled={isContactSubmitting}
                 className="px-8 py-4 border-2 border-black text-black font-sans font-medium rounded-md hover:bg-gray-100 transition-colors duration-300 float-right"
               >
-                Submit
+                {isContactSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             </form>
           </div>
@@ -142,6 +181,7 @@ export default function Footer() {
                 <input
                   type="email"
                   id="subscribeEmail"
+                  name="subscribeEmail"
                   value={subscribeEmail}
                   onChange={(e) => setSubscribeEmail(e.target.value)}
                   required
@@ -151,9 +191,10 @@ export default function Footer() {
               </div>
               <button
                 type="submit"
+                disabled={isSubscribeSubmitting}
                 className="w-full px-8 py-4 border-2 border-black text-black font-sans font-medium rounded-md hover:bg-gray-100 transition-colors duration-300"
               >
-                Submit
+                {isSubscribeSubmitting ? 'Submitting...' : 'Submit'}
               </button>
             </form>
           </div>

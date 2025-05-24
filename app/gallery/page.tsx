@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PageHeader from '../components/PageHeader';
 import QuoteBanner from '../components/QuoteBanner';
+import AnimatedServiceCollage from '../components/AnimatedServiceCollage';
 
 export const metadata = {
   title: 'Gallery | Angel Gabriel Aeronautics',
@@ -189,6 +190,14 @@ export default function GalleryPage() {
           />
         </div>
       </div>
+
+      {/* Animated Service Collage Section */}
+      <div className="mt-20 mb-12">
+        <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
+          <AnimatedServiceCollage />
+        </div>
+      </div>
+
     </div>
   );
 } 

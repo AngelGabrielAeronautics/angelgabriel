@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { FaBinoculars } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // List of service images for collage (includes extra images beyond grid size to avoid duplicates)
@@ -55,28 +57,45 @@ export default function AnimatedServiceCollage() {
   }, []);
 
   return (
-    <div className="absolute inset-0 grid grid-cols-4 grid-rows-3">
-      {indices.map((imgIdx, idx) => (
-        <div key={idx} className="relative w-full h-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={imgIdx}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={servicesImages[imgIdx]}
-                alt="Service image"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </AnimatePresence>
+    <>
+      {/* Animated Image Grid */}
+      <div className="absolute inset-0 grid grid-cols-4 grid-rows-3">
+        {indices.map((imgIdx, idx) => (
+          <div key={idx} className="relative w-full h-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={imgIdx}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={servicesImages[imgIdx]}
+                  alt="Service image"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
+
+      {/* Permanent Text Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center px-4 z-10">
+        <div className="bg-black/60 text-center p-7 w-full rounded-md">
+          <h2 className="text-4xl md:text-5xl font-light font-heading text-[#e9e2cf] mb-4">Explore Our Services</h2>
+          <p className="text-xl text-[#e9e2cf] mb-8 font-sans max-w-3xl mx-auto">
+            From private charters to cargo movements, discover how we can elevate your travel experience.
+          </p>
+          <Link href="/services" className="inline-flex items-center justify-center px-7 py-2 bg-yellow-500 text-text-black font-medium font-sans rounded-md hover:bg-yellow-600 transition-colors duration-300">
+            <FaBinoculars className="w-5 h-5 mr-2" />
+            View Services
+          </Link>
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   );
 } 

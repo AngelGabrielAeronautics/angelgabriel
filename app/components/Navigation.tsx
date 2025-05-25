@@ -63,7 +63,7 @@ const Navigation = () => {
         <div className={`flex justify-between items-start ${isScrolled ? 'h-20' : 'h-16'}`}>
           {/* Logo - reduced by 30% and with no gap at top */}
           <Link href="/" className="flex items-start pt-0 mt-0">
-            <div className="w-[126px] md:w-[140px] lg:w-[168px] h-auto">
+            <div className="w-[115px] md:w-[90px] lg:w-[130px] h-auto">
               <Image 
                 src="/images/logos/Logo Banner TOP.png" 
                 alt="Angel Gabriel Aeronautics" 

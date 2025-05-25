@@ -28,19 +28,21 @@ export default function ClientLogos({ logos }: ClientLogosProps) {
       <h2 className="text-3xl font-light font-heading text-text-black mb-8 text-center">
         Our valued clients
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-        {logos.map((logo, i) => (
-          <div
-            key={i}
-            className="bg-gray-100 aspect-video rounded-lg flex items-center justify-center"
-          >
-            <img
-              src={`/images/clients/${logo}`}
-              alt={`Client Logo ${i + 1}`}
-              className="max-w-full max-h-full object-contain"
-            />
-          </div>
-        ))}
+      <div className="bg-white p-8 rounded-lg">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          {logos.map((logo, i) => (
+            <div
+              key={i}
+              className="bg-white aspect-video rounded-lg flex items-center justify-center"
+            >
+              <img
+                src={`/images/clients/${logo}`}
+                alt={`Client Logo ${i + 1}`}
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );

@@ -5,8 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CallToAction from '../components/CallToAction';
 import PageHeader from '../components/PageHeader';
+import Head from 'next/head';
 
 export default function ServicesPage() {
+  const pageUrl = process.env.SITE_URL + '/services';
   // Services data with descriptions
   const services = [
     {
@@ -130,54 +132,82 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-ag-cream">
-      <PageHeader
-        title="Our Services"
-        subtitle="Angel Gabriel Aeronautics offers a comprehensive range of aviation services tailored to your needs. Explore our offerings below."
-      />
-      <div className="container mx-auto px-4 py-12">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.id}
-              variants={fadeIn}
-              className="bg-white rounded-lg overflow-hidden shadow-lg"
-            >
-              <div className="relative h-64">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-light font-heading text-text-black mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-text-black font-sans">
-                  {service.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+    <>
+      <Head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.SITE_URL },
+            { "@type": "ListItem", "position": 2, "name": "Our Services", "item": pageUrl }
+          ]
+        })}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "OfferCatalog",
+          "name": "Angel Gabriel Aeronautics Services Catalog",
+          "itemListElement": services.map((s, i) => ({
+            "@type": "Offer",
+            "position": i + 1,
+            "itemOffered": {
+              "@type": "Service",
+              "serviceType": s.title,
+              "description": s.description,
+              "image": (process.env.SITE_URL || 'https://flyangelgabriel.com') + s.image,
+              "url": pageUrl + '#' + s.id
+            }
+          }))
+        })}} />
+      </Head>
+      <div className="min-h-screen bg-ag-cream">
+        <PageHeader
+          title="Our Services"
+          subtitle="Angel Gabriel Aeronautics offers a comprehensive range of aviation services tailored to your needs. Explore our offerings below."
+        />
+        <div className="container mx-auto px-4 py-12">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          >
+            {services.map((service) => (
+              <motion.div
+                key={service.id}
+                variants={fadeIn}
+                className="bg-white rounded-lg overflow-hidden shadow-lg"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-light font-heading text-text-black mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-text-black font-sans">
+                    {service.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="text-center mt-16"
-        >
-        {/* CTA Section */}
-        <CallToAction />
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="text-center mt-16"
+          >
+          {/* CTA Section */}
+          <CallToAction />
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </>
   );
 } 

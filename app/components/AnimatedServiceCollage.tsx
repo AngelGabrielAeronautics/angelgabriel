@@ -73,7 +73,12 @@ export default function AnimatedServiceCollage() {
               >
                 <Image
                   src={servicesImages[imgIdx]}
-                  alt="Service image"
+                  alt={decodeURIComponent(
+                    servicesImages[imgIdx]
+                      .split('/')
+                      .pop()!
+                      .replace(/\.[^/.]+$/, '')
+                  ).replace(/[-_]/g, ' ')}
                   fill
                   className="object-cover"
                 />

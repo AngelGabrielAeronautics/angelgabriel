@@ -44,22 +44,6 @@ export default function AboutContent({ clientLogos }: AboutContentProps) {
         {/* Our Valued Clients */}
         <ClientLogos logos={clientLogos} />
 
-        {/* Charter Quote Form Section */}
-        <motion.div
-          className="mb-20"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          <h2 className="text-3xl font-light font-heading text-text-black mb-8 text-center">
-            Angel Gabriel&apos;s charter operations
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <QuoteRequestForm />
-          </div>
-        </motion.div>
-
         {/* Gallery Link */}
         <motion.div
           className="mb-16 text-center"
@@ -81,59 +65,6 @@ export default function AboutContent({ clientLogos }: AboutContentProps) {
             View Gallery
           </Link>
         </motion.div>
-
-        {/* Newsletter & Contact Forms */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
-          {/* Newsletter */}
-          <motion.div
-            className="bg-gray-50 p-8 rounded-lg"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
-            {/* … newsletter form … */}
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            className="bg-gray-50 p-8 rounded-lg"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
-            {/* … contact form … */}
-          </motion.div>
-        </div>
-
-        {/* CTA Button */}
-        <div className="mt-10 text-center mb-20">
-          <Link
-            href="/rates-and-quotes"
-            className="inline-flex justify-center py-4 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black font-sans"
-          >
-            Request a charter quote
-          </Link>
-        </div>
-
-        {/* YouTube Video Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-light font-heading text-text-black mb-6 text-center">
-            Watch Our Video
-          </h2>
-          <div className="w-full bg-gray-100 rounded-lg overflow-hidden">
-            <iframe
-              width="100%"
-              height="315"
-              src="https://www.youtube.com/embed/_wczi6Twk7s?autoplay=1&loop=1&playlist=_wczi6Twk7s"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
       </div>
     </div>
   );

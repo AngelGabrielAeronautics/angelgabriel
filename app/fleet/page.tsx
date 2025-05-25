@@ -4,6 +4,7 @@ import PageHeader from '../components/PageHeader';
 import CallToAction from '../components/CallToAction';
 import FleetCarousel from '../components/FleetCarousel';
 import AnimatedServiceCollage from '../components/AnimatedServiceCollage';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'Southern African Fleet | Angel Gabriel Aeronautics',
@@ -11,6 +12,7 @@ export const metadata = {
 };
 
 export default function FleetPage() {
+  const pageUrl = process.env.SITE_URL + '/fleet';
   // Define all aircraft data
   const aircraftList = [
     {
@@ -373,75 +375,97 @@ export default function FleetPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-ag-cream">
-      {/* Page Header */}
-      <PageHeader title="Southern African fleet" />
+    <>
+      <Head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.SITE_URL },
+            { "@type": "ListItem", "position": 2, "name": "Fleet", "item": pageUrl }
+          ]
+        })}} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": aircraftList.map((a, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": a.name,
+            "item": pageUrl + '#'+a.name.replace(/\s+/g,'-')
+          }))
+        })}} />
+      </Head>
+      <div className="min-h-screen bg-ag-cream">
+        {/* Page Header */}
+        <PageHeader title="Southern African fleet" />
 
-      {/* Featured Stats & CTA */}
-      <section className="bg-secondary-dark text-hero-text">
-        <div className="max-w-7xl mx-auto px-4 py-10 mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-          <div>
-            <div className="h-full flex items-center">
-              <h3 className="text-4xl md:text-5xl font-light font-heading">30+ Vetted Aircraft</h3>
-            </div>
-          </div>
-          <div>
-            <div className="h-full flex items-center">
-              <p className="text-lg md:text-xl mb-0 font-sans">
-              Angel Gabriel accesses a fleet in excess of 30 vetted aircraft, ranging from two-seaters up to three hundred-plus-seat jet airliners, from nine regional hubs spanning from Maun to Cape Town.
-            </p>
-            </div>
-          </div>
-          <div className="h-full flex items-center md:justify-end">
-          <Link 
-            href="/rates-and-quotes"
-              className="px-8 py-4 border-2 border-hero-text text-lg font-medium font-sans rounded-md text-hero-text hover:bg-hero-text/10 transition-colors duration-300"
-          >
-            Request a charter quote
-          </Link>
-        </div>
-        </div>
-      </section>
-
-      {/* Fleet Carousel Banner */}
-      <div className="w-full overflow-hidden">
-        <FleetCarousel />
-      </div>
-
-      <div className="container mx-auto px-4 py-12">
-        {/* Aircraft List */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
-          {aircraftList.map((aircraft, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-              {/* Aircraft Image full width */}
-                <img 
-                  src={aircraft.image} 
-                  alt={aircraft.name} 
-                className="object-contain w-full h-auto"
-              />
-              {/* Content wrapper */}
-              <div className="p-4">
-                <h3 className="text-xl font-light font-heading text-text-black mb-3">{aircraft.name}</h3>
-                <div className="text-sm text-text-black space-y-2 font-sans">
-                  {aircraft.specs.map((spec, specIndex) => (
-                    <div key={specIndex}>{spec}</div>
-                  ))}
-                </div>
+        {/* Featured Stats & CTA */}
+        <section className="bg-[#807c71] text-[#e9e2cf]">
+          <div className="max-w-7xl mx-auto px-4 py-10 mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div>
+              <div className="h-full flex items-center">
+                <h2 className="text-4xl md:text-5xl font-light font-heading">30+ Vetted Aircraft</h2>
               </div>
             </div>
-          ))}
-        </div>
-        
-        {/* CTA Section */}
-        <CallToAction href="/rates-and-quotes" linkText="Request a charter quote" />
+            <div>
+              <div className="h-full flex items-center">
+                <p className="text-lg md:text-xl mb-0 font-sans">
+                Angel Gabriel accesses a fleet in excess of 30 vetted aircraft, ranging from two-seaters up to three hundred-plus-seat jet airliners, from nine regional hubs spanning from Maun to Cape Town.
+              </p>
+              </div>
+            </div>
+            <div className="h-full flex items-center md:justify-end">
+            <Link 
+              href="/rates-and-quotes"
+                className="px-8 py-4 border-2 border-[#e9e2cf] text-lg font-medium font-sans rounded-md text-hero-text hover:bg-hero-text/10 transition-colors duration-300"
+            >
+              Request a charter quote
+            </Link>
+          </div>
+          </div>
+        </section>
 
-        {/* Animated Service Collage Section */}
-        <div className="mt-20 mb-12">
-          <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
-            <AnimatedServiceCollage />
+        {/* Fleet Carousel Banner */}
+        <div className="w-full overflow-hidden">
+          <FleetCarousel />
+        </div>
+
+        <div className="container mx-auto px-4 py-12">
+          {/* Aircraft List */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
+            {aircraftList.map((aircraft, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                {/* Aircraft Image full width */}
+                  <img 
+                    src={aircraft.image} 
+                    alt={aircraft.name} 
+                  className="object-contain w-full h-auto"
+                />
+                {/* Content wrapper */}
+                <div className="p-4">
+                  <h3 className="text-xl font-light font-heading text-text-black mb-3">{aircraft.name}</h3>
+                  <div className="text-sm text-text-black space-y-2 font-sans">
+                    {aircraft.specs.map((spec, specIndex) => (
+                      <div key={specIndex}>{spec}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* CTA Section */}
+          <CallToAction href="/rates-and-quotes" linkText="Request a charter quote" />
+
+          {/* Animated Service Collage Section */}
+          <div className="mt-20 mb-12">
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
+              <AnimatedServiceCollage />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 } 

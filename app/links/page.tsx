@@ -8,6 +8,7 @@ import HeroButton from '../components/HeroButton';
 import CallToAction from '../components/CallToAction';
 import Image from 'next/image';
 import LinkItem from '../components/LinkItem';
+import Head from 'next/head';
 
 export default function LinksPage() {
   const fadeIn = {
@@ -67,42 +68,56 @@ export default function LinksPage() {
     }
   ];
 
-  return (
-    <div className="min-h-screen bg-ag-cream">
-      {/* Hero Banner with overlay */}
-      <div className="relative h-[700px] md:h-[700px] w-full">
-        <Image
-          src="/images/links/LinksPage.png"
-          alt="Links & endorsements network diagram"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-5xl md:text-6xl font-bold font-heading text-[#e9e2cf] mb-4">Links & endorsements</h1>
-          <p className="text-xl text-[#e9e2cf] mb-8 max-w-4xl font-sans">
-            We have added a list of links that we hope may help you to plan your trip or navigate the local market. Angel Gabriel works with and can endorse each of the entities listed here.
-          </p>
-          <HeroButton href="/rates-and-quotes" text="Request a charter quote" />
-        </div>
-      </div>
+  const pageUrl = process.env.SITE_URL + '/links';
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {/* Links Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-          {linkCategories.map((category, index) => (
-            <LinkCategory 
-              key={category.title}
-              title={category.title}
-              links={category.links}
-              index={index}
-            />
-          ))}
+  return (
+    <>
+      <Head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.SITE_URL },
+            { "@type": "ListItem", "position": 2, "name": "Links & Endorsements", "item": pageUrl }
+          ]
+        })}} />
+      </Head>
+      <div className="min-h-screen bg-ag-cream">
+        {/* Hero Banner with overlay */}
+        <div className="relative h-[700px] md:h-[700px] w-full">
+          <Image
+            src="/images/links/LinksPage.png"
+            alt="Links & endorsements network diagram"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-4">
+            <h1 className="text-5xl md:text-6xl font-bold font-heading text-[#e9e2cf] mb-4">Links & endorsements</h1>
+            <p className="text-xl text-[#e9e2cf] mb-8 max-w-4xl font-sans">
+              We have added a list of links that we hope may help you to plan your trip or navigate the local market. Angel Gabriel works with and can endorse each of the entities listed here.
+            </p>
+            <HeroButton href="/rates-and-quotes" text="Request a charter quote" />
+          </div>
         </div>
-        
-        {/* CTA Section */}
-        <CallToAction href="/rates-and-quotes" linkText="Request a charter quote" />
+
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          {/* Links Categories */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+            {linkCategories.map((category, index) => (
+              <LinkCategory 
+                key={category.title}
+                title={category.title}
+                links={category.links}
+                index={index}
+              />
+            ))}
+          </div>
+          
+          {/* CTA Section */}
+          <CallToAction href="/rates-and-quotes" linkText="Request a charter quote" />
+        </div>
       </div>
-    </div>
+    </>
   );
 } 

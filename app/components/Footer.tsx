@@ -205,7 +205,7 @@ export default function Footer() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
               <div className="w-full md:w-1/2 mb-8 md:mb-0">
-                <p className="mb-4 text-xl text-justify font-sans">
+                <p className="mb-4 text-xl md:text-lg lg:text-xl text-justify font-sans">
                   Welcome to Angel Gabriel, your trusted air charter provider since 2013. We specialise in lodge transfer flights and private charters across Southern Africa and Botswana, offering unparalleled service, safety, and convenience. Whether you're travelling for business or leisure, our experienced team is committed to delivering seamless, personalised aviation solutions. At Angel Gabriel, we're dedicated to making every journey as memorable as the destinations we fly you to.
                 </p>
                 <div className="flex space-x-6">
@@ -245,7 +245,7 @@ export default function Footer() {
 
         {/* Footer Navigation */}
         <div className="border-t bg-black pt-6 pb-4">
-          <ul className="flex justify-center space-x-8 mb-4">
+          <ul className="flex flex-col items-center space-y-4 mb-4 sm:flex-row sm:justify-center sm:space-x-8 sm:space-y-0">
             <li><Link href="/" className="text-gray-300 hover:text-hero-text transition-colors font-sans">Home</Link></li>
             <li><Link href="/rates-and-quotes" className="text-gray-300 hover:text-hero-text transition-colors font-sans">Rates & Quotes</Link></li>
             <li><Link href="/contact" className="text-gray-300 hover:text-hero-text transition-colors font-sans">Contact</Link></li>

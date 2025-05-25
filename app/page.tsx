@@ -154,22 +154,22 @@ export default function Home() {
         <HeroBackdrop />
         
         {/* Hero content - extreme left aligned */}
-        <div className="relative z-20 w-full px-6">
+        <div className="relative z-20 w-full px-4 sm:px-6">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeIn}
             className="max-w-6xl ml-0 md:ml-28"
           >
-            <h1 className="text-6xl md:text-7xl font-light font-heading mb-7 leading-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-light font-heading mb-7 leading-tight">
               Southern Africa's Remote<br />Destination Specialist.
             </h1>
-            <p className="text-2xl md:text-3xl mb-8">
+            <p className="text-base sm:text-xl md:text-2xl xl:text-3xl mb-8">
               Mashatu, Madikwe, Lubbesrust, and more...
             </p>
             <Link 
               href="/rates-and-quotes" 
-              className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#e7e0cf] text-lg font-medium rounded-md text-[#e7e0cf] bg-transparent hover:bg-[#e7e0cf]/10 transition-colors duration-300 md:py-4 md:text-xl md:px-10 font-heading"
+              className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#e7e0cf] text-lg font-medium rounded-md text-[#e7e0cf] bg-transparent hover:bg-[#e7e0cf]/10 transition-colors duration-300 md:px-10 md:py-4 md:text-xl xl:px-8 xl:py-3 xl:text-lg font-heading"
             >
               Request a charter quote
             </Link>
@@ -185,7 +185,10 @@ export default function Home() {
         variants={fadeIn}
         className="w-full"
       >
-        <ServicesGrid />
+        <div className="container mx-auto px-4 py-12">
+          <h2 className="text-4xl font-light font-heading text-text-black mb-8 text-center">Our Services</h2>
+          <ServicesGrid />
+        </div>
       </motion.section>
 
       {/* Fleet Carousel */}

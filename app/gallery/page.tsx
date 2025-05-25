@@ -3,6 +3,7 @@ import Link from 'next/link';
 import PageHeader from '../components/PageHeader';
 import QuoteBanner from '../components/QuoteBanner';
 import AnimatedServiceCollage from '../components/AnimatedServiceCollage';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'Gallery | Angel Gabriel Aeronautics',
@@ -10,6 +11,8 @@ export const metadata = {
 };
 
 export default function GalleryPage() {
+  const pageUrl = process.env.SITE_URL + '/gallery';
+
   // Gallery items with captions - This array will be removed
   /*
   const galleryItems = [
@@ -121,83 +124,95 @@ export default function GalleryPage() {
   */
 
   return (
-    <div className="min-h-screen bg-ag-cream font-sans">
-      <PageHeader title="Gallery" />
+    <>
+      <Head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": process.env.SITE_URL },
+            { "@type": "ListItem", "position": 2, "name": "Gallery", "item": pageUrl }
+          ]
+        })}} />
+      </Head>
+      <div className="min-h-screen bg-ag-cream font-sans">
+        <PageHeader title="Gallery" />
 
-      {/* Instagram Section - Moved to top */}
-      <div className="container mx-auto px-4 pt-12 max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-light font-heading text-text-black mb-4">Follow us on Instagram</h2>
-          <p className="text-xl text-text-black mb-8">@angel_gabriel_air</p>
-          <Link 
-            href="https://www.instagram.com/angel_gabriel_air"
-            className="inline-flex items-center justify-center px-8 py-4 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black font-sans"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit our Instagram
-          </Link>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 pb-12 max-w-7xl">
-        {/* Gallery Grid - This section will be removed */}
-        {/*
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {galleryItems.map((item, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-square bg-gray-100 relative flex items-center justify-center">
-                <div className="text-slate-500 p-4 text-center font-sans">
-                  {item.image}
-                </div>
-              </div>
-              <div className="p-4">
-                <p className="text-text-black text-sm whitespace-pre-line font-sans">{item.caption}</p>
-              </div>
+        {/* Instagram Section - Moved to top */}
+        <div className="container mx-auto px-4 pt-12 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-light font-heading text-text-black mb-4">Follow us on Instagram</h2>
+            <p className="text-xl text-text-black mb-8">@angel_gabriel_air</p>
+            <Link 
+              href="https://www.instagram.com/angel_gabriel_air"
+              className="inline-flex items-center justify-center px-8 py-4 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black font-sans"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit our Instagram
+            </Link>
+            <div className="mt-8">
+              <img
+                src="/images/gallery/Angel%20Gabriel%20Gallery.png"
+                alt="Angel Gabriel Aeronautics gallery"
+                className="w-full rounded-lg shadow-md"
+              />
             </div>
-          ))}
-        </div>
-        */}
-        
-        {/* Inserted QuoteBanner Section */}
-        <div className="my-16">
-          <QuoteBanner 
-            backgroundSrc="/images/banners/gallery-quote-banner.jpg"
-            altText="Scenic flight over African landscapes"
-            title="Ready for Your Next Adventure?"
-            subtitle="Let Angel Gabriel Aeronautics take you there. Experience seamless travel and breathtaking views."
-            ctaText="Request Your Custom Quote"
-            ctaHref="/rates-and-quotes"
-          />
-        </div>
-        
-        {/* About Image */}
-        <div className="mb-12 bg-white rounded-lg p-10 shadow-md hover:shadow-lg transition-shadow duration-300">
-          <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-            <p className="text-slate-500 text-center p-4 font-sans">Collage of Angel Gabriel Aeronautics' business activities.</p>
           </div>
         </div>
-        
-        {/* Banner linking to About Page - REPLACING the old About Section */}
-        <div className="mb-16">
-          <QuoteBanner
-            backgroundSrc="/images/banners/about-us-gallery-promo.jpg" // Placeholder - Update with relevant image for gallery context
-            altText="Angel Gabriel Aeronautics aircraft fleet or scenic view related to company information"
-            title="Learn More About Us"
-            subtitle="Discover our history, our fleet, and what makes Angel Gabriel Aeronautics your premier choice for air charter."
-            ctaText="Explore Our About Page"
-            ctaHref="/about"
-          />
-        </div>
-      </div>
 
-      {/* Animated Service Collage Section */}
-      <div className="mt-20 mb-12">
-        <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
-          <AnimatedServiceCollage />
+        <div className="container mx-auto px-4 pb-12 max-w-7xl">
+          {/* Gallery Grid - This section will be removed */}
+          {/*
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {galleryItems.map((item, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div className="aspect-square bg-gray-100 relative flex items-center justify-center">
+                  <div className="text-slate-500 p-4 text-center font-sans">
+                    {item.image}
+                  </div>
+                </div>
+                <div className="p-4">
+                  <p className="text-text-black text-sm whitespace-pre-line font-sans">{item.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          */}
+          
+          {/* Inserted QuoteBanner Section */}
+          <div className="my-16">
+            <QuoteBanner 
+              backgroundSrc="/images/gallery/caravan.jpg"
+              altText="Scenic flight over African landscapes"
+              title="Ready for Your Next Adventure?"
+              subtitle="Let Angel Gabriel Aeronautics take you there. Experience seamless travel and breathtaking views."
+              ctaText="Request Your Custom Quote"
+              ctaHref="/rates-and-quotes"
+            />
+          </div>
+          
+          {/* Banner linking to About Page - REPLACING the old About Section */}
+          <div className="mb-16">
+            <QuoteBanner
+              backgroundSrc="/images/banners/about-us-gallery-promo.jpg" // Placeholder - Update with relevant image for gallery context
+              altText="Angel Gabriel Aeronautics aircraft fleet or scenic view related to company information"
+              title="Learn More About Us"
+              subtitle="Discover our history, our fleet, and what makes Angel Gabriel Aeronautics your premier choice for air charter."
+              ctaText="Explore Our About Page"
+              ctaHref="/about"
+            />
+          </div>
         </div>
-      </div>
 
-    </div>
+        {/* Animated Service Collage Section */}
+        <div className="mt-20 mb-12">
+          <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
+            <AnimatedServiceCollage />
+          </div>
+        </div>
+
+      </div>
+    </>
   );
 } 

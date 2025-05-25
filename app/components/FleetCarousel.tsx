@@ -31,7 +31,7 @@ const FleetCarousel: React.FC = () => {
   const prevIndex = (current - 1 + fleetImages.length) % fleetImages.length;
 
   return (
-    <Link href="/fleet" className="block cursor-pointer hover:opacity-95 transition-opacity">
+    <Link href="/fleet" aria-label="View our fleet of aircraft" className="block cursor-pointer hover:opacity-95 transition-opacity">
       <div className="w-full relative pb-[11.9%] overflow-hidden">
         {fleetImages.map((image, index) => {
           const isCurrent = index === current;

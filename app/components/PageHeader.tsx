@@ -34,7 +34,7 @@ export default function PageHeader({ title, subtitle, children }: PageHeaderProp
   return (
     <div className="relative bg-ag-cream py-14">
       <div className="container mx-auto px-4 text-center">
-        <h1 className="text-6xl md:text-6xl font-light text-ag-text-black mb-1 font-heading max-w-3xl mx-auto">{title}</h1>
+        <h1 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-5 font-light text-ag-text-black mb-1 font-heading max-w-3xl mx-auto">{title}</h1>
         {subtitle && <p className="text-xl text-ag-text-black mt-4 max-w-3xl mx-auto">{subtitle}</p>}
         {children}
       </div>

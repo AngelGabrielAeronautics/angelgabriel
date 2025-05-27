@@ -177,7 +177,7 @@ export default function ServicesPage() {
                 variants={fadeIn}
                 className="bg-white rounded-lg overflow-hidden shadow-lg"
               >
-                <div className="relative h-64">
+                <div className="relative w-full aspect-video">
                   <Image
                     src={service.image}
                     alt={service.title}

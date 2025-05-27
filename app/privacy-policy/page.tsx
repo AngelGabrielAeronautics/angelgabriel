@@ -8,6 +8,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import PageHeader from '../components/PageHeader';
 import Head from 'next/head';
+import CallToAction from '../components/CallToAction';
 
 export default function PrivacyPolicyPage() {
   const pageUrl = process.env.SITE_URL + '/privacy-policy';
@@ -236,18 +237,7 @@ export default function PrivacyPolicyPage() {
           </nav>
 
           {/* CTA Section */}
-          <div className="max-w-7xl mx-auto mt-10 mb-20 print:hidden">
-            <div className="bg-secondary-dark rounded-lg p-8 text-center">
-              <h2 className="text-3xl font-light text-hero-text mb-4 font-heading">Ready to take flight?</h2>
-              <p className="text-xl text-hero-text mb-8 font-sans">Experience the comfort and convenience of flying with Angel Gabriel Aeronautics.</p>
-              <Link 
-                href="/rates-and-quotes"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#e7e0cf] text-lg font-medium font-sans rounded-md text-[#e7e0cf] bg-transparent hover:bg-[#e7e0cf]/10 transition-colors duration-300 md:py-4 md:text-xl md:px-10"
-              >
-                Request a charter quote
-              </Link>
-            </div>
-          </div>
+          <CallToAction />
         </div>
       </div>
     </>

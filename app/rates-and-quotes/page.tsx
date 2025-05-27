@@ -33,7 +33,7 @@ export default function RatesAndQuotesPage() {
       {/* Aircraft Banner Image with Quote Form Overlay */}
       <div className="w-full relative">
         {/* Aircraft Image */}
-        <div className="w-full relative h-full md:h-[700px] z-5">
+        <div className="w-full relative h-[60vh] md:h-[700px] z-5">
           <div className="absolute inset-0"></div>
           <Image 
             src="/images/rates-and-quotes/caravan-rates.jpg"

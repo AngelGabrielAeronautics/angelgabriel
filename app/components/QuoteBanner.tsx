@@ -25,7 +25,7 @@ export default function QuoteBanner({
   icon: IconComponent = FaPlaneDeparture,
 }: QuoteBannerProps) {
   return (
-    <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+    <div className="relative w-full aspect-[4/3] sm:aspect-video rounded-lg overflow-hidden">
       <Image
         src={backgroundSrc}
         alt={altText}
@@ -35,7 +35,7 @@ export default function QuoteBanner({
       />
       <div className="absolute inset-0 flex items-center justify-center px-2 sm:px-4">
         <div className="bg-black/45 text-center p-2 sm:p-4 md:p-2 lg:p-4 max-w-6xl rounded-md">
-          <h2 className="text-lg sm:text-xl md:text-base lg:text-xl xl:text-2xl font-heading text-ag-cream mb-3">{title}</h2>
+          <h2 className="text-base sm:text-lg md:text-base lg:text-xl xl:text-2xl font-heading text-ag-cream mb-3">{title}</h2>
           <p className="text-sm sm:text-base md:text-xs lg:text-base xl:text-lg text-ag-cream mb-8 max-w-3xl mx-auto">{subtitle}</p>
           <Link
             href={ctaHref}

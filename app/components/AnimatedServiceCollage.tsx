@@ -89,13 +89,13 @@ export default function AnimatedServiceCollage() {
       </div>
 
       {/* Permanent Text Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center px-4 z-10">
-        <div className="bg-black/60 text-center p-7 w-full rounded-md">
-          <h2 className="text-4xl md:text-5xl font-light font-heading text-[#e9e2cf] mb-4">Explore Our Services</h2>
-          <p className="text-xl text-[#e9e2cf] mb-8 font-sans max-w-3xl mx-auto">
+      <div className="absolute inset-0 flex items-center justify-center px-2 sm:px-4 z-10">
+        <div className="bg-black/60 text-center p-4 sm:p-7 w-full rounded-md">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl max-[320px]:text-xl font-light font-heading text-[#e9e2cf] mb-3">Explore Our Services</h2>
+          <p className="text-base sm:text-lg md:text-xl max-[320px]:text-sm text-[#e9e2cf] mb-6 font-sans max-w-3xl mx-auto">
             From private charters to cargo movements, discover how we can elevate your travel experience.
           </p>
-          <Link href="/services" className="inline-flex items-center justify-center px-7 py-2 bg-yellow-500 text-text-black font-medium font-sans rounded-md hover:bg-yellow-600 transition-colors duration-300">
+          <Link href="/services" className="inline-flex items-center justify-center px-4 py-2 text-sm sm:px-7 sm:py-2 sm:text-base max-[320px]:px-3 max-[320px]:py-1 max-[320px]:text-xs bg-yellow-500 text-text-black font-medium font-sans rounded-md hover:bg-yellow-600 transition-colors duration-300">
             <FaBinoculars className="w-5 h-5 mr-2" />
             View Services
           </Link>

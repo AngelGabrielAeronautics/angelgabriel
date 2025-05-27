@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import PageHeader from '../../components/PageHeader';
 
 export default function ExploringTheWildBlogPost() {
   const pageUrl = process.env.SITE_URL + '/blog/exploring-the-wild';
@@ -63,7 +64,7 @@ export default function ExploringTheWildBlogPost() {
           },
           "headline": "Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving",
           "description": "Discover why flying with Angel Gabriel Aeronautics is safer and more efficient than long road journeys to remote safari destinations.",
-          "image": "https://flyangelgabriel.com/images/services/Flying Safaris.jpg",
+          "image": "https://flyangelgabriel.com/images/blogs/OFD.png",
           "author": { "@type": "Person", "name": authorName },
           "publisher": { "@type": "Organization", "name": "Angel Gabriel Aeronautics", "logo": { "@type": "ImageObject", "url": "https://flyangelgabriel.com/icon.png" } },
           "datePublished": publishedDate,
@@ -77,41 +78,15 @@ export default function ExploringTheWildBlogPost() {
           }
         }) }} />
       </Head>
-      <div className="min-h-screen bg-white">
-        {/* Hero Section */}
-        <div className="relative bg-blue-600 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-3xl mx-auto">
-              <div className="mb-4 flex items-center justify-center space-x-3">
-                <Link 
-                  href="/blog"
-                  className="text-blue-200 hover:text-white transition-colors"
-                >
-                  Blog
-                </Link>
-                <span className="text-blue-200">/</span>
-                <span className="text-white">Travel Tips</span>
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving
-              </h1>
-              <div className="flex items-center justify-center space-x-4 text-white">
-                <span>August 27, 2024</span>
-                <span>•</span>
-                <span>By Dylan Coppard</span>
-                <span>•</span>
-                <span>2 min read</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <motion.div initial="hidden" animate="visible" variants={fadeIn} role="main" className="min-h-screen bg-ag-cream font-sans">
+        <PageHeader title="Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving" subtitle={publishedDate} />
 
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8 rounded-lg overflow-hidden">
               <div className="relative h-96 w-full">
                 <Image 
-                  src="/images/services/Flying Safaris.jpg" 
+                  src="/images/blogs/OFD.png" 
                   alt="People boarding a charter aircraft" 
                   fill
                   className="object-cover"
@@ -191,7 +166,7 @@ export default function ExploringTheWildBlogPost() {
                 <p className="font-bold">Ready to explore the wild? Contact us today to discuss your travel plans and discover how we can make your journey as memorable as your destination.</p>
                 <Link 
                   href="/quotes" 
-                  className="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                  className="px-8 py-4 shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-300 font-sans inline-block mt-4"
                 >
                   Request a Quote
                 </Link>
@@ -254,12 +229,12 @@ export default function ExploringTheWildBlogPost() {
           </p>
           <Link 
             href="/quotes"
-            className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="inline-flex items-center justify-center px-8 py-4 shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-300 font-sans"
           >
             Request a charter quote
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 } 

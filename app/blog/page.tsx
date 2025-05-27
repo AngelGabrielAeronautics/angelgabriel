@@ -14,6 +14,7 @@ type BlogPost = {
   date: string;
   category: string;
   imageText: string;
+  imageSrc?: string;
 }
 
 export default function BlogPage() {
@@ -47,7 +48,8 @@ export default function BlogPage() {
       excerpt: 'Discover why flying with Angel Gabriel Aeronautics is the safest and most efficient way to explore remote destinations in Southern Africa.',
       date: 'August 27, 2024',
       category: 'Travel Tips',
-      imageText: 'People boarding a charter aircraft'
+      imageText: 'People boarding a charter aircraft',
+      imageSrc: '/images/blogs/OFD.png',
     },
     {
       slug: 'top-safari-destinations',
@@ -87,7 +89,7 @@ export default function BlogPage() {
           ]
         })}} />
       </Head>
-      <div className="min-h-screen bg-ag-cream font-sans">
+      <motion.div initial="hidden" animate="visible" variants={fadeIn} role="main" className="min-h-screen bg-ag-cream font-sans">
         <PageHeader
           title="Blog"
           subtitle="Insights, updates, and stories from Angel Gabriel Aeronautics"
@@ -108,17 +110,15 @@ export default function BlogPage() {
               >
                 <Link href={`/blog/${post.slug}`} aria-label={`Read more about ${post.title}`}>
                   <div className="h-48 bg-gray-100 relative flex items-center justify-center">
-                    {post.slug === 'exploring-the-wild' ? (
-                      <Image 
-                        src="/images/services/Flying Safaris.jpg" 
+                    {post.imageSrc ? (
+                      <Image
+                        src={post.imageSrc}
                         alt={post.imageText}
                         fill
                         className="object-cover"
                       />
                     ) : (
-                      <div className="text-slate-500 p-4 text-center font-sans">
-                        {post.imageText}
-                      </div>
+                      <div className="text-slate-500 p-4 text-center font-sans">{post.imageText}</div>
                     )}
                   </div>
                   <div className="p-6">
@@ -136,7 +136,7 @@ export default function BlogPage() {
             ))}
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 } 

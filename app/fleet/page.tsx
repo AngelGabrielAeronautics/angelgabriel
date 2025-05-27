@@ -402,7 +402,7 @@ export default function FleetPage() {
 
         {/* Featured Stats & CTA */}
         <section className="bg-[#807c71] text-[#e9e2cf]">
-          <div className="max-w-7xl mx-auto px-4 py-10 mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div className="max-w-7xl mx-auto px-4 py-10 mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div>
               <div className="h-full flex items-center">
                 <h2 className="text-4xl md:text-5xl font-light font-heading">30+ Vetted Aircraft</h2>
@@ -410,19 +410,19 @@ export default function FleetPage() {
             </div>
             <div>
               <div className="h-full flex items-center">
-                <p className="text-lg md:text-xl mb-0 font-sans">
-                Angel Gabriel accesses a fleet in excess of 30 vetted aircraft, ranging from two-seaters up to three hundred-plus-seat jet airliners, from nine regional hubs spanning from Maun to Cape Town.
-              </p>
+                <p className="text-sm md:text-base lg:text-lg mb-0 font-sans">
+                  Angel Gabriel accesses a fleet in excess of 30 vetted aircraft, ranging from two-seaters up to three hundred-plus-seat jet airliners, from nine regional hubs spanning from Maun to Cape Town.
+                </p>
               </div>
             </div>
-            <div className="h-full flex items-center md:justify-end">
-            <Link 
-              href="/rates-and-quotes"
-                className="px-8 py-4 border-2 border-[#e9e2cf] text-lg font-medium font-sans rounded-md text-hero-text hover:bg-hero-text/10 transition-colors duration-300"
-            >
-              Request a charter quote
-            </Link>
-          </div>
+            <div className="h-full flex items-center justify-center lg:justify-end">
+              <Link 
+                href="/rates-and-quotes"
+                className="px-6 py-3 border-2 border-[#e9e2cf] text-base font-medium font-sans rounded-md text-hero-text hover:bg-hero-text/10 transition-colors duration-300"
+              >
+                Request a charter quote
+              </Link>
+            </div>
           </div>
         </section>
 

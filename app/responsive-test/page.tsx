@@ -7,9 +7,9 @@ const devices = [
   { name: 'Laptop', width: 1366, height: 768, bp: 'xl' },
   { name: 'Tablet Landscape', width: 1024, height: 768, bp: 'lg' },
   { name: 'Tablet Portrait', width: 768, height: 1024, bp: 'md' },
-  { name: 'Mobile Large', width: 414, height: 896, bp: 'base' },
+  { name: 'Mobile Large', width: 640, height: 896, bp: 'sm' },
   { name: 'Mobile Medium', width: 375, height: 667, bp: 'base' },
-  { name: 'Mobile Small', width: 320, height: 568, bp: 'base' },
+  { name: 'Mobile Small', width: 320, height: 568, bp: 'xs' },
 ];
 
 export default function ResponsiveTestPage() {

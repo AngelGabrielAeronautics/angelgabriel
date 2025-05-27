@@ -36,8 +36,9 @@ export default function ClientLogos({ logos }: ClientLogosProps) {
               className="bg-white aspect-video rounded-lg flex items-center justify-center"
             >
               <img
-                src={`/images/clients/${logo}`}
-                alt={`Client Logo ${i + 1}`}
+                src={encodeURI(`/images/clients/${logo}`)}
+                alt={logo}
+                onError={(e) => console.error('Failed to load client logo', logo, e)}
                 className="max-w-full max-h-full object-contain"
               />
             </div>

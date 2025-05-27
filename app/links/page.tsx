@@ -93,7 +93,7 @@ export default function LinksPage() {
             priority
           />
           <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="text-5xl md:text-6xl font-bold font-heading text-[#e9e2cf] mb-4">Links & endorsements</h1>
+            <h1 className="text-5xl md:text-6xl font-bold font-heading text-[#e9e2cf] mb-4 max-[375px]:text-4xl max-[320px]:text-3xl">Links & endorsements</h1>
             <p className="text-xl text-[#e9e2cf] mb-8 max-w-4xl font-sans">
               We have added a list of links that we hope may help you to plan your trip or navigate the local market. Angel Gabriel works with and can endorse each of the entities listed here.
             </p>

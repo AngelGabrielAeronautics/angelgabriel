@@ -7,16 +7,6 @@ import Script from 'next/script'
 import { Toaster } from 'react-hot-toast'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 
-// Import fontsource packages
-import '@fontsource/open-sans/300.css'
-import '@fontsource/open-sans/400.css'
-import '@fontsource/open-sans/600.css'
-import '@fontsource/open-sans/700.css'
-import '@fontsource/montserrat/300.css'
-import '@fontsource/montserrat/500.css'
-import '@fontsource/montserrat/600.css'
-import '@fontsource/montserrat/700.css'
-
 const montserrat = Montserrat({ 
   subsets: ['latin'],
   variable: '--font-montserrat',

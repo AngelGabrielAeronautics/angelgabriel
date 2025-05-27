@@ -1,10 +1,144 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: true
 ---
+# Angel Gabriel Aeronautics Design and Development Rules
 
-# Your rule content
+- Content should be structured for both users and search engines
+- All design elements must follow the style guide at `/style-guide`
+- Consistency with established patterns is mandatory
 
-- You can @ files here
-- You can use markdown but dont have to
+## Technical SEO Requirements
+- All pages must have proper metadata (title, description, keywords)
+- Semantic HTML structure must be used throughout
+- All images must have descriptive alt text
+- URLs should be clean, descriptive, and include keywords
+- Mobile responsiveness is mandatory
+- Page load speed must be optimized
+- Schema markup should be implemented where applicable
+
+## Content Guidelines
+- Content should be original, valuable, and keyword-rich
+- Headings (H1-H6) must be used properly and include relevant keywords
+- Internal linking structure should be optimized
+- Content should be regularly updated and maintained
+- Blog posts should target specific keywords and topics
+
+## Performance Requirements
+- Core Web Vitals must be optimized
+- Images must be properly compressed and sized
+- Code should be minified and optimized
+- Lazy loading should be implemented for images and components
+- Caching strategies should be implemented
+
+## Monitoring and Maintenance
+- Regular SEO audits should be performed
+- Analytics should be set up and monitored
+- Broken links should be fixed immediately
+- Regular content updates should be scheduled
+- Performance metrics should be tracked
+
+## Design System Guidelines
+- **Always reference the style guide** at `/style-guide` before creating new components
+- All new UI elements must match existing patterns in the style guide
+- Do not introduce new colors or design patterns without approval
+- Maintain consistent spacing, typography, and interactive behaviors
+- Use the numbered section headers (1-5) for all form sections
+- Follow established form styling for all input elements
+- All components should be responsive and mobile-friendly
+
+## Implementation Guidelines
+- Use Next.js built-in SEO features
+- Implement proper meta tags for all pages
+- Create a sitemap.xml
+- Implement robots.txt
+- Use proper canonical URLs
+- Implement structured data where applicable
+- Ensure proper heading hierarchy
+- Optimize for featured snippets
+- Implement proper internal linking
+- Use descriptive anchor text
+- Optimize for local SEO
+- Implement proper social media meta tags
+
+## Color Palette
+
+The Angel Gabriel Aeronautics website uses a specific color palette to maintain brand consistency:
+
+- Primary Dark: `black` - Used for primary buttons, headers, section indicators, and key UI elements
+- Secondary Dark: `#241700` - Used for secondary UI elements and supporting accents
+- Background Cream: `bg-ag-cream` (#e9e2cf) - Used for page backgrounds across the entire site
+- Hero Text: `#e7e0cf` - Used for text on dark backgrounds, especially in hero sections
+- Light Gray Background: `#f9fafb` (gray-50) - Used for form section backgrounds and subtle contrast
+- Text Black: `#191100` - Used for headings and primary text
+- White: `white` - Used for text on dark backgrounds and form backgrounds
+
+## Typography
+
+- Headings: Montserrat (font-heading) - Used for all headings with font-bold
+- Body text: Open Sans (font-sans) - Used for all body text
+- Form Labels: Open Sans with font-medium - Used for all form labels
+- Button Text: Open Sans with font-medium - Used for all button text
+
+## Button Styles
+
+1. Primary Button:
+   - Background: black
+   - Text: white
+   - Hover: gray-900
+   - Rounded corners (rounded-md)
+   - Padding: px-8 py-4
+
+2. Hero Button:
+   - Background: transparent
+   - Border: 2px solid #e7e0cf
+   - Text: #e7e0cf
+   - Hover: Semi-transparent #e7e0cf overlay
+   - Used specifically in hero sections
+
+3. Outline Button:
+   - Background: white
+   - Border: 1px solid black
+   - Text: black
+   - Hover: Light gray background (gray-50)
+
+## Form Design Rules
+
+1. All input fields should have:
+   - White background
+   - Gray-300 border
+   - Focus states with black ring and border
+   - Subtle shadow (shadow-sm)
+   - Required fields indicated with red asterisk
+
+2. Form section organization:
+   - Use numbered section headers (1-5) with black background
+   - Include subtle border-bottom between sections
+   - Group related inputs together
+   - Use gray-50 background for option groups
+   - Add hover effects to interactive elements
+   - Use black for radio button and checkbox fills
+
+## Reference Materials
+
+- Always consult the **Style Guide** at `/style-guide` for visual reference
+- Use the QuoteRequestForm component as the standard for all forms
+- Follow the component structure in existing files for consistency
+- Refer to Navigation component for menu styling
+- Use the HeroBackdrop pattern for hero sections
+
+## Collaboration Process
+
+- Discuss any design changes with the team before implementation
+- Document any new patterns added to the style guide
+- Ensure designs are approved before development begins
+- Test all designs across multiple devices and screen sizes
+
+## Layout Consistency Standard
+- All major content blocks (forms, info panels, etc.) must use `max-w-7xl mx-auto` to match the width of blocks in `/rates-and-quotes`, ensuring visual consistency across all pages.
+
+## Info Block Dimension Standard
+- All major information blocks (such as the 'Charter Rate Information' block in `/rates-and-quotes`) must use the following Tailwind classes for consistent appearance:
+  - `bg-white rounded-lg p-10 mb-12 shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 -mt-16 z-20 relative`
+- This ensures a unified look for info panels and feature blocks across the site.

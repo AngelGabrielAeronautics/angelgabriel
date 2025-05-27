@@ -32,10 +32,10 @@ type PageHeaderProps = {
 
 export default function PageHeader({ title, subtitle, children }: PageHeaderProps) {
   return (
-    <div className="relative bg-ag-cream py-24">
-      <div className="container mx-auto px-4 text-center">
-        <h1 className="text-6xl md:text-6xl font-light text-ag-text-black mb-1 font-heading">{title}</h1>
-        {subtitle && <p className="text-xl text-ag-text-black">{subtitle}</p>}
+    <div className="relative bg-ag-cream py-14 max-md:pt-28 md:pt-28">
+      <div className="container mx-auto px-4 md:px-8 text-center">
+        <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5 font-light text-ag-text-black mb-1 font-heading max-w-3xl mx-auto">{title}</h1>
+        {subtitle && <p className="text-xl text-ag-text-black mt-4 max-w-3xl mx-auto">{subtitle}</p>}
         {children}
       </div>
     </div>

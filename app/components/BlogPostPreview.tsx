@@ -59,6 +59,7 @@ export default function BlogPostPreview({ post, featured = false, delay = 0 }: B
         </p>
         <Link 
           href={`/blog/${post.slug}`}
+          aria-label={`Read more about ${post.title}`}
           className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800"
         >
           Read More

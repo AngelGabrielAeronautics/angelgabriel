@@ -2,19 +2,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Links & Endorsements | Angel Gabriel Aeronautics',
-  description: 'Browse our curated list of trusted partners and connections including agents, lodges, overnight accommodations, and transport services across Southern Africa.',
-  keywords: [
-    'partner links',
-    'lodge recommendations',
-    'safari accommodations',
-    'travel agents',
-    'South Africa lodges',
-    'Botswana lodges',
-    'aviation partners',
-    'hotel recommendations',
-    'transport services',
-    'Southern Africa travel'
-  ],
+  description: 'A curated collection of partners, lodges, and services endorsed by Angel Gabriel Aeronautics.',
+  keywords: ['Angel Gabriel Aeronautics links', 'endorsements', 'agents', 'lodges', 'transport'],
   openGraph: {
     title: 'Links & Endorsements | Angel Gabriel Aeronautics',
     description: 'Browse our curated list of trusted partners including agents, lodges, accommodations, and transport services across Southern Africa.',

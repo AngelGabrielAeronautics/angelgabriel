@@ -159,15 +159,6 @@ export default function ContactPage() {
                 <h3 className="text-xl font-light font-heading text-text-black mb-3">Regional Operations Office</h3>
                 <h4 className="text-lg font-light font-heading text-text-black mb-2">South Africa</h4>
                 <p className="text-text-black font-sans">Angel Gabriel at Lanseria International Airport</p>
-                <div className="mt-6 mb-8 rounded-lg overflow-hidden shadow-md">
-                  <Image 
-                    src="/images/contact/Lanseria-3-555x370.jpg" 
-                    alt="Lanseria International Airport facility"
-                    width={555} 
-                    height={370} 
-                    className="w-full object-cover"
-                  />
-                </div>
               </div>
             </div>
             
@@ -250,32 +241,31 @@ export default function ContactPage() {
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
               </form>
-              {/* Google Map Embed - Moved here */}
-              <div className="mt-8 mb-12">
-                <MapEmbed 
-                  mapApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
-                  mapCenterLat={-25.9388}
-                  mapCenterLng={27.9262}
-                  markerPositionLat={-25.9388}
-                  markerPositionLng={27.9262}
-                  mapZoom={14}
-                  containerClassName="rounded-lg overflow-hidden shadow-lg"
-                  mapContainerStyle={{ width: '100%', height: '650px', borderRadius: '0.5rem' }}
+              <div className="mt-8 mb-12 rounded-lg overflow-hidden shadow-md">
+                <Image 
+                  src="/images/contact/Lanseria-3-555x370.jpg" 
+                  alt="Lanseria International Airport facility"
+                  width={555} 
+                  height={350} 
+                  className="w-full h-[300px] object-cover md:h-auto"
                 />
               </div>
             </div>
           </div>
           
-          {/* Charter Quote Form */}
-          <section className="mt-20">
-            <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-light font-heading text-text-black mb-10 text-center">Request a Charter Quote</h2>
-              <div className="p-0 rounded-lg">
-                <QuoteRequestForm />
-                </div>
-            </div>
-          </section>
-          
+          <div className="mt-8 mb-12 rounded-lg overflow-hidden shadow-md">
+            <MapEmbed 
+              mapApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
+              mapCenterLat={-25.9388}
+              mapCenterLng={27.9262}
+              markerPositionLat={-25.9388}
+              markerPositionLng={27.9262}
+              mapZoom={14}
+              containerClassName="rounded-lg overflow-hidden shadow-lg"
+              mapContainerStyle={{ width: '100%', height: '650px', borderRadius: '0.5rem' }}
+            />
+          </div>
+
           {/* Newsletter */}
           <div className="mt-20 bg-white p-8 rounded-lg shadow-md">
             <div className="max-w-xl mx-auto text-center">
@@ -306,8 +296,8 @@ export default function ContactPage() {
                 {/* Newsletter Submit Message Display */}
                 {newsletterSubmitMessage && (
                   <div className={`mt-3 p-3 rounded-md text-sm ${
-                    newsletterSubmitMessage.type === 'success' 
-                      ? 'bg-green-50 text-green-700 border border-green-200' 
+                    newsletterSubmitMessage.type === 'success'
+                      ? 'bg-green-50 text-green-700 border border-green-200'
                       : 'bg-red-50 text-red-700 border border-red-200'
                   }`}>
                     {newsletterSubmitMessage.text}
@@ -316,6 +306,16 @@ export default function ContactPage() {
               </form>
             </div>
           </div>
+
+          {/* Charter Quote Form */}
+          <section className="mt-20">
+            <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-light font-heading text-text-black mb-10 text-center">Request a Charter Quote</h2>
+              <div className="p-0 rounded-lg">
+                <QuoteRequestForm />
+                </div>
+            </div>
+          </section>
         </div>
       </div>
     </>

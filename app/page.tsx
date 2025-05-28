@@ -149,7 +149,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-ag-cream">
       {/* Hero Section */}
-      <section className="relative h-[60vh] sm:h-screen w-full flex items-center text-[#e7e0cf]">
+      <section className="relative h-[60vh] sm:h-screen w-full flex items-start sm:items-center pt-16 sm:pt-0 text-[#e7e0cf]">
         {/* Video backdrop component - no overlay */}
         <HeroBackdrop />
         

@@ -33,6 +33,8 @@ export default function AboutPage() {
 }
 
 export const metadata: Metadata = {
+  title: 'About Angel Gabriel Aeronautics | Our Story & Values',
+  description: 'Learn about Angel Gabriel Aeronautics, our history in Southern African aviation since 2013, our commitment to safety, and our experienced team.',
   openGraph: { images: ['/about/opengraph-image.png'] },
   twitter: { images: ['/about/twitter-image.png'] },
 }; 

@@ -7,5 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/gallery' },
   openGraph: {
     url: new URL('/gallery', process.env.SITE_URL || 'https://flyangelgabriel.com'),
+    images: ['/gallery/opengraph-image.png']
   },
+  twitter:   { images: ['/gallery/twitter-image.png'] },
 }; 

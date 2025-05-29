@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     description: 'Browse our curated list of trusted partners including agents, lodges, accommodations, and transport services across Southern Africa.',
     type: 'website',
     locale: 'en_ZA',
-    siteName: 'Angel Gabriel Aeronautics'
-  }
+    siteName: 'Angel Gabriel Aeronautics',
+    images: ['/links/opengraph-image.png']
+  },
+  twitter: { images: ['/links/twitter-image.png'] }
 }; 

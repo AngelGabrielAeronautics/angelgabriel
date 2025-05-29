@@ -22,7 +22,9 @@ export const metadata: Metadata = {
     type: 'article',
     locale: 'en_ZA',
     siteName: 'Angel Gabriel Aeronautics',
+    images: ['/blog/exploring-the-wild/opengraph-image.png'],
     publishedTime: '2024-08-27T10:00:00Z',
     authors: ['Dylan Coppard']
-  }
+  },
+  twitter: { images: ['/blog/exploring-the-wild/twitter-image.png'] },
 }; 

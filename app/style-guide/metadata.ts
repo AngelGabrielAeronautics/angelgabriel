@@ -18,5 +18,7 @@ export const metadata: Metadata = {
     siteName: 'Angel Gabriel Aeronautics',
     locale: 'en_US',
     type: 'website',
+    images: ['/style-guide/opengraph-image.png']
   },
+  twitter: { images: ['/style-guide/twitter-image.png'] },
 } 

@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { Metadata } from 'next';
 import path from 'path';
 import AboutContent from './AboutContent';
 import Head from 'next/head';
@@ -29,4 +30,9 @@ export default function AboutPage() {
       <AboutContent clientLogos={clientLogos} />
     </>
   );
-} 
+}
+
+export const metadata: Metadata = {
+  openGraph: { images: ['/about/opengraph-image.png'] },
+  twitter: { images: ['/about/twitter-image.png'] },
+}; 

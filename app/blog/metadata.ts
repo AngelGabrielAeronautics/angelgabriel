@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     description: 'Dive into our collection of stories, travel tips, and insights about luxury air charter experiences across Southern Africa.',
     type: 'website',
     locale: 'en_ZA',
-    siteName: 'Angel Gabriel Aeronautics'
-  }
+    siteName: 'Angel Gabriel Aeronautics',
+    images: ['/blog/opengraph-image.png'],
+  },
+  twitter: { images: ['/blog/twitter-image.png'] },
 }; 

@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     description: 'Review our privacy policy regarding data collection, usage, and protection practices for users of our private charter flight services.',
     type: 'website',
     locale: 'en_ZA',
-    siteName: 'Angel Gabriel Aeronautics'
-  }
+    siteName: 'Angel Gabriel Aeronautics',
+    images: ['/privacy-policy/opengraph-image.png']
+  },
+  twitter: { images: ['/privacy-policy/twitter-image.png'] }
 }; 

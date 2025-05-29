@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     description: 'Essential booking information and charter flight terms for private air travel across Southern Africa with Angel Gabriel Aeronautics.',
     type: 'website',
     locale: 'en_ZA',
-    siteName: 'Angel Gabriel Aeronautics'
-  }
+    siteName: 'Angel Gabriel Aeronautics',
+    images: ['/terms/opengraph-image.png']
+  },
+  twitter: { images: ['/terms/twitter-image.png'] }
 }; 

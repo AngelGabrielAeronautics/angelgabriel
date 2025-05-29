@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     description: 'Learn about our cookie policy and how we use cookies to enhance your experience on our website.',
     type: 'website',
     locale: 'en_ZA',
-    siteName: 'Angel Gabriel Aeronautics'
-  }
+    siteName: 'Angel Gabriel Aeronautics',
+    images: ['/cookie-policy/opengraph-image.png']
+  },
+  twitter: { images: ['/cookie-policy/twitter-image.png'] }
 }; 

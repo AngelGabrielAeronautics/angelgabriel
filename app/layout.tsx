@@ -37,14 +37,14 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icon.png',
   },
-  metadataBase: new URL(process.env.SITE_URL || 'https://flyangelgabriel.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://angelgabriel.co.za'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
-    url: process.env.SITE_URL || 'https://flyangelgabriel.com',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://angelgabriel.co.za',
     siteName: 'Angel Gabriel Aeronautics',
     title: 'Angel Gabriel Aeronautics | Luxury Charter Flights in Southern Africa',
     description: 'Experience unparalleled private air charter services with Southern Africa\'s remote destination specialist.',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Angel Gabriel Aeronautics | Private Charter Flights',
     description: 'Premium private charter flights across Southern Africa and Botswana.',
-    images: ['/images/twitter-image.jpg'],
+    // images: ['/images/twitter-image.png'], // Temporarily remove default
   },
   robots: {
     index: true,
@@ -109,15 +109,12 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "Angel Gabriel Aeronautics",
-          "url": "https://flyangelgabriel.com",
-          "logo": "https://flyangelgabriel.com/icon.png",
+          "name": "Angel Gabriel",
+          "url": "https://angelgabriel.co.za",
+          "logo": "https://angelgabriel.co.za/logo.png",
           "sameAs": [
-            "https://www.facebook.com/AngelGabrielAeronautics",
-            "https://www.instagram.com/AngelGabrielAeronautics",
-            "https://www.youtube.com/@AngelGabrielAeronautics",
-            "https://www.linkedin.com/company/angel-gabriel-aeronautics",
-            "https://www.pinterest.com/AngelGabrielAeronautics"
+            "https://www.facebook.com/AngelGabriel",
+            "https://www.linkedin.com/company/angelgabriel"
           ]
         })}} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image'
 
 interface ClientLogosProps {
   logos: string[];
@@ -33,13 +34,15 @@ export default function ClientLogos({ logos }: ClientLogosProps) {
           {logos.map((logo, i) => (
             <div
               key={i}
-              className="bg-white aspect-video rounded-lg flex items-center justify-center"
+              className="relative bg-white aspect-video rounded-lg flex items-center justify-center"
             >
-              <img
+              <Image
                 src={encodeURI(`/images/clients/${logo}`)}
                 alt={logo}
-                onError={(e) => console.error('Failed to load client logo', logo, e)}
-                className="max-w-full max-h-full object-contain"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-contain"
+                onError={() => console.error('Failed to load client logo', logo)}
               />
             </div>
           ))}

@@ -9,6 +9,7 @@ import Image from 'next/image'
 import QuoteBanner from '../components/QuoteBanner'
 import { FaPlaneDeparture } from 'react-icons/fa'
 import CallToAction from '../components/CallToAction'
+import EmailTemplateQuoteConfirmation from '../components/EmailTemplateQuoteConfirmation'
 
 export default function StyleGuidePage() {
   const fadeIn = {
@@ -592,6 +593,66 @@ export default function StyleGuidePage() {
 // </div>`}
                 </pre>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Email Templates */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-light text-text-black mb-8 font-heading">Email Templates</h2>
+          <div className="bg-white p-8 rounded-md shadow-sm space-y-8">
+            <h3 className="text-xl font-light font-heading mb-4 text-text-black">Quote Request Confirmation Email</h3>
+            <div className="bg-gray-50 p-4 rounded-md">
+              <EmailTemplateQuoteConfirmation />
+            </div>
+            <div className="bg-gray-100 p-4 mt-4 rounded-md overflow-auto">
+              <pre className="text-sm font-mono">
+{`<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Quote Request Confirmation</title>
+</head>
+<body style="background-color: #e9e2cf; padding: 20px; font-family: 'Open Sans', sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; margin:0 auto; background-color:#ffffff; border-radius:8px; overflow:hidden;">
+    <tr>
+      <td style="background-color:#000000; padding:20px; text-align:center;">
+        <h1 style="color:#e7e0cf; margin:0; font-size:24px; font-family:'Montserrat', sans-serif; font-weight:300;">Quote Request Confirmation</h1>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:20px; color:#191100; font-size:16px;">
+        <p>Hi {{firstName}},</p>
+        <p>Thank you for requesting a charter quote with Angel Gabriel Aeronautics. We've received your request with the following details:</p>
+        <ul style="margin-top:8px; margin-bottom:8px;">
+          <li><strong>From:</strong> {{fromLocation}}</li>
+          <li><strong>To:</strong> {{toLocation}}</li>
+          <li><strong>Date of Travel:</strong> {{travelDate}}</li>
+          <li><strong>Passengers:</strong> {{passengers}}</li>
+        </ul>
+        <p>We will review your request and get back to you soon.</p>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Quote Banner -->
+  <div style="max-width:600px; margin:20px auto;">
+    <img src="https://flyangelgabriel.com/images/rates-and-quotes/caravan-rates.jpg" alt="Fly Private, Fly Angel Gabriel" width="600" style="display:block; width:100%; max-width:600px; border-radius:8px; overflow:hidden;" />
+  </div>
+
+  <!-- Services Collage -->
+  <div style="max-width:600px; margin:20px auto;">
+    <img src="https://flyangelgabriel.com/images/services-collage.jpg" alt="Explore our services" width="600" style="display:block; width:100%; max-width:600px; border-radius:8px; overflow:hidden;" />
+  </div>
+
+  <div data-role="module-unsubscribe" class="module" role="module" data-type="unsubscribe" style="color:#6b7280; font-size:12px; line-height:20px; padding:16px; text-align:center;" data-muid="UNIQUE_MUID">
+    <p style="font-size:12px; line-height:20px;">
+      <a class="Unsubscribe--unsubscribeLink" href="{{unsubscribe}}" target="_blank" style="font-family:sans-serif;text-decoration:none;">Unsubscribe</a> | <a class="Unsubscribe--unsubscribePreferences" href="{{unsubscribe_preferences}}" target="_blank" style="font-family:sans-serif;text-decoration:none;">Preferences</a>
+    </p>
+  </div>
+</body>
+</html>`}
+              </pre>
             </div>
           </div>
         </section>

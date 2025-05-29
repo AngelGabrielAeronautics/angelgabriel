@@ -23,6 +23,8 @@ export const metadata: Metadata = {
     description: 'Experience unparalleled private air charter services with Southern Africa\'s remote destination specialist. We offer personalized aviation solutions for business and leisure travelers.',
     type: 'website',
     locale: 'en_ZA',
-    siteName: 'Angel Gabriel Aeronautics'
-  }
+    siteName: 'Angel Gabriel Aeronautics',
+    images: ['/opengraph-image.png'],
+  },
+  twitter: { images: ['/twitter-image.png'] },
 }; 

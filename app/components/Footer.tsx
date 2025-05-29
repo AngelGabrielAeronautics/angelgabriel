@@ -102,8 +102,11 @@ export default function Footer() {
               <h3 className="text-xl font-light font-heading text-text-black mb-2">
                 Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving
               </h3>
-              <Link href="/blog/exploring-the-wild" className="text-text-black hover:text-secondary-dark font-medium font-sans">
-                Read More
+              <Link href="/blog/exploring-the-wild" 
+                    className="text-text-black hover:text-secondary-dark font-medium font-sans"
+                    aria-label="Read more about Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving"
+              >
+                Read more about Exploring the Wild
               </Link>
             </div>
           </div>

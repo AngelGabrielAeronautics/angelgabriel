@@ -392,6 +392,24 @@ export default function QuoteRequestForm({
                 required 
               />
             </div>
+            {/* Add Passenger input here for oneWay */} 
+            <div className="mt-6 md:col-span-2">
+              <label htmlFor="passengers" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Number of Passengers <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="passengers" 
+                name="passengers"
+                value={formData.passengers}
+                onChange={handleTextChange}
+                min="1"
+                max="50"
+                placeholder="e.g. 4"
+                className="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm"
+                required 
+              />
+            </div>
           </div>
         )}
 
@@ -469,67 +487,107 @@ export default function QuoteRequestForm({
                 required 
               />
             </div>
+            {/* Add Passenger input here for return */}
+            <div className="mt-6 md:col-span-2">
+              <label htmlFor="passengers" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Number of Passengers <span className="text-red-500">*</span>
+              </label>
+              <input 
+                type="number" 
+                id="passengers" 
+                name="passengers"
+                value={formData.passengers}
+                onChange={handleTextChange}
+                min="1"
+                max="50"
+                placeholder="e.g. 4"
+                className="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm"
+                required 
+              />
+            </div>
           </>
         )}
 
         {/* Additional Fields for Multi-Destination */}
-        {formData.routingType === 'multiDestination' && additionalRoutes.map((route, index) => (
-          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label htmlFor={`multiFromLocation${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
-                From <span className="text-red-500">*</span>
+        {formData.routingType === 'multiDestination' && (
+          <>
+            {additionalRoutes.map((route, index) => (
+              <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label htmlFor={`multiFromLocation${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
+                    From <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id={`multiFromLocation${index}`} 
+                    name={`multiFromLocation${index}`}
+                    value={route.from}
+                    onChange={(e) => handleAdditionalRouteChange(index, 'from', e.target.value)}
+                    placeholder="e.g. Johannesburg, OR Tambo"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                    required 
+                  />
+                </div>
+                <div>
+                  <label htmlFor={`multiToLocation${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
+                    To <span className="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id={`multiToLocation${index}`} 
+                    name={`multiToLocation${index}`}
+                    value={route.to}
+                    onChange={(e) => handleAdditionalRouteChange(index, 'to', e.target.value)}
+                    placeholder="e.g. Cape Town International"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                    required 
+                  />
+                </div>
+                {/* Date of Travel picker */}
+                <div>
+                  <label htmlFor={`multiDate${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
+                    Date of Travel <span className="text-red-500">*</span>
+                  </label>
+                  <ReactDatePicker
+                    key={`multi-${index}-${formData.routingType}-${route.date}`}
+                    selected={route.date ? parseDateString(route.date) : null}
+                    onChange={(d: Date | null) => handleAdditionalRouteChange(index, 'date', d ? formatDateString(d) : '')}
+                    minDate={
+                      index > 0 && additionalRoutes[index - 1].date
+                        ? parseDateString(additionalRoutes[index - 1].date)
+                        : parseDateString(minDate)
+                    }
+                    maxDate={parseDateString(maxDate)}
+                    dateFormat="dd/MM/yyyy"
+                    className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm"
+                    placeholderText="dd/mm/yyyy"
+                    shouldCloseOnSelect={true}
+                    closeOnScroll={true}
+                    required 
+                  />
+                </div>
+              </div>
+            ))}
+            {/* Add Passenger input here for multiDestination */}
+            <div className="mt-6">
+              <label htmlFor="passengers" className="block text-sm font-medium text-text-black mb-1 font-sans">
+                Number of Passengers <span className="text-red-500">*</span>
               </label>
               <input 
-                type="text" 
-                id={`multiFromLocation${index}`} 
-                name={`multiFromLocation${index}`}
-                value={route.from}
-                onChange={(e) => handleAdditionalRouteChange(index, 'from', e.target.value)}
-                placeholder="e.g. Johannesburg, OR Tambo"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
+                type="number" 
+                id="passengers" 
+                name="passengers"
+                value={formData.passengers}
+                onChange={handleTextChange}
+                min="1"
+                max="50"
+                placeholder="e.g. 4"
+                className="w-full md:w-1/4 px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm"
                 required 
               />
             </div>
-            <div>
-              <label htmlFor={`multiToLocation${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
-                To <span className="text-red-500">*</span>
-              </label>
-              <input 
-                type="text" 
-                id={`multiToLocation${index}`} 
-                name={`multiToLocation${index}`}
-                value={route.to}
-                onChange={(e) => handleAdditionalRouteChange(index, 'to', e.target.value)}
-                placeholder="e.g. Cape Town International"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-black focus:border-black bg-white shadow-sm" 
-                required 
-              />
-            </div>
-            {/* Date of Travel picker */}
-            <div>
-              <label htmlFor={`multiDate${index}`} className="block text-sm font-medium text-text-black mb-1 font-sans">
-                Date of Travel <span className="text-red-500">*</span>
-              </label>
-              <ReactDatePicker
-                key={`multi-${index}-${formData.routingType}-${route.date}`}
-                selected={route.date ? parseDateString(route.date) : null}
-                onChange={(d: Date | null) => handleAdditionalRouteChange(index, 'date', d ? formatDateString(d) : '')}
-                minDate={
-                  index > 0 && additionalRoutes[index - 1].date
-                    ? parseDateString(additionalRoutes[index - 1].date)
-                    : parseDateString(minDate)
-                }
-                maxDate={parseDateString(maxDate)}
-                dateFormat="dd/MM/yyyy"
-                className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-md bg-white shadow-sm"
-                placeholderText="dd/mm/yyyy"
-                shouldCloseOnSelect={true}
-                closeOnScroll={true}
-                required 
-              />
-            </div>
-          </div>
-        ))}
+          </> 
+        )}
       </div>
       
       {/* Aircraft Section */}

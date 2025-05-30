@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Quote Request Confirmation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e9e2cf; /* Background Cream */
+            font-family: 'Open Sans', Arial, sans-serif;
+            color: #191100; /* Text Black */
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #ffffff; /* White for content background */
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            font-family: 'Montserrat', Verdana, sans-serif;
+            font-weight: bold;
+            color: black; /* Primary Dark for headers */
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: black; /* Primary Dark */
+        }
+        h2 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #e9e2cf; /* Subtle separator matching body background */
+            padding-bottom: 5px;
+            color: black; /* Primary Dark */
+        }
+        p, li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #191100; /* Text Black */
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li strong {
+            color: #241700; /* Secondary Dark for emphasis */
+            font-weight: bold; /* Ensure medium/bold as per form labels */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9e2cf;
+            font-size: 14px;
+            color: #241700; /* Secondary Dark */
+        }
+        .footer a {
+            color: black; /* Primary Dark */
+            text-decoration: none;
+            font-weight: bold; /* Open Sans with font-medium */
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .preference-item {
+            margin-bottom: 5px;
+            padding-left: 10px; /* Indent preference items slightly */
+        }
+        .button-link { /* Mimicking Primary Button style for links */
+            display: inline-block;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px; /* rounded-md */
+            font-family: 'Open Sans', Arial, sans-serif; /* Button Text font */
+            font-weight: 500; /* font-medium */
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .button-link:hover {
+            background-color: #1a1a1a; /* Slightly lighter black, like gray-900 */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: left; margin-bottom: 25px;">
+            <img src="{{siteBaseUrl}}/images/logos/Logo Banner TOP.png" alt="{{companyName}} Logo" style="max-width: 150px; height: auto;" />
+        </div>
+        <h1>{{companyName}}</h1>
+        <p>Dear {{firstName}} {{lastName}},</p>
+        <p>Thank you for submitting your charter quote request. We have received your details and our team will review your request and get back to you shortly with a personalized quote.</p>
+        <p>Please find a summary of your request below for your records:</p>
+
+        <div class="section">
+            <h2>Your Contact Information</h2>
+            <ul>
+                <li><strong>Full Name:</strong> {{firstName}} {{lastName}}</li>
+                <li><strong>Email Address:</strong> {{email}}</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Flight Details</h2>
+            <p><strong>Trip Type:</strong> {{routingTypeDisplay}}</p>
+            {{#if isOneWay}}
+            <ul>
+                <li><strong>From:</strong> {{fromLocation}}</li>
+                <li><strong>To:</strong> {{toLocation}}</li>
+                <li><strong>Date of Travel:</strong> {{travelDate}}</li>
+            </ul>
+            {{/if}}
+            {{#if isReturn}}
+            <ul>
+                <li><strong>From:</strong> {{fromLocation}}</li>
+                <li><strong>To:</strong> {{toLocation}}</li>
+                <li><strong>Departure Date:</strong> {{travelDate}}</li>
+                <li><strong>Return Date:</strong> {{returnDate}}</li>
+            </ul>
+            {{/if}}
+            {{#if isMultiDestination}}
+            <p><strong>Your Itinerary:</strong></p>
+            <ul>
+                {{#each legs}}
+                <li style="padding-left: 15px; border-left: 2px solid #e9e2cf; margin-bottom: 15px; padding-top: 5px; padding-bottom: 5px;">
+                    <strong style="display: block; margin-bottom: 5px;">Leg {{legNumber}}:</strong>
+                    From: {{from}}<br/>
+                    To: {{to}}<br/>
+                    Date: {{dateFormatted}}
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            <p><strong>Number of Passengers:</strong> {{passengers}}</p>
+        </div>
+
+        {{#if hasAircraftPreferences}}
+        <div class="section">
+            <h2>Aircraft Preferences</h2>
+            <ul>
+                {{#each aircraftPreferences}}
+                <li class="preference-item">{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+
+        {{#if hasBoltOns}}
+        <div class="section">
+            <h2>Selected Bolt-ons</h2>
+            <ul>
+                {{#each boltOns}}
+                <li class="preference-item">{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+
+        {{#if notes}}
+        <div class="section">
+            <h2>Additional Notes or Comments</h2>
+            <p style="white-space: pre-wrap; padding:10px; background-color: #f9fafb; border-radius:4px;">{{notes}}</p>
+        </div>
+        {{/if}}
+
+        <div class="section">
+            <h2>Newsletter Subscription</h2>
+            <p>{{#if isSubscribed}}You are subscribed to receive news and special offers from {{companyName}}.{{else}}You have chosen not to subscribe to our newsletter at this time.{{/if}}</p>
+        </div>
+
+        <p>If any of these details are incorrect, or if you have any urgent questions, please don't hesitate to contact us by replying to this email or calling us directly.</p>
+        <p>We appreciate your interest in {{companyName}} and look forward to assisting you with your travel plans.</p>
+        <p style="margin-top: 20px;">Best regards,<br/><strong>The {{companyName}} Team</strong></p>
+        
+        <div class="footer">
+            <p>&copy; {{currentYear}} {{companyName}}. All rights reserved.</p>
+            <p><a href="{{companyWebsite}}">Visit our Website</a> | <a href="mailto:{{contactEmail}}">Contact Us</a></p>
+        </div>
+    </div>
+</body>
+</html> 

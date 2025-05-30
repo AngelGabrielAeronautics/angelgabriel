@@ -30,13 +30,22 @@ export default function AnimatedServiceCollage() {
   // Initialize with a random sample of unique image indices
   const [indices, setIndices] = useState<number[]>(() => {
     const all = servicesImages.map((_, i) => i);
-    // Fisher-Yates shuffle
-    for (let i = all.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [all[i], all[j]] = [all[j], all[i]];
-    }
+    // Initial state: take the first gridCount images without shuffling for server render
     return all.slice(0, gridCount);
   });
+
+  // Effect for initial client-side shuffle
+  useEffect(() => {
+    setIndices(() => {
+      const all = servicesImages.map((_, i) => i);
+      // Fisher-Yates shuffle
+      for (let i = all.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [all[i], all[j]] = [all[j], all[i]];
+      }
+      return all.slice(0, gridCount);
+    });
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   useEffect(() => {
     const interval = setInterval(() => {

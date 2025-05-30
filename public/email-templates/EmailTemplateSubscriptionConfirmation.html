@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Confirmation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e9e2cf; /* Background Cream */
+            font-family: 'Open Sans', Arial, sans-serif;
+            color: #191100; /* Text Black */
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #ffffff; /* White for content background */
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Montserrat', Verdana, sans-serif;
+            font-weight: bold;
+            color: black; /* Primary Dark for headers */
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #191100; /* Text Black */
+        }
+        .logo-container {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        .logo-container img {
+            max-width: 150px; /* Consistent with quote email */
+            height: auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9e2cf;
+            font-size: 14px;
+            color: #241700; /* Secondary Dark */
+        }
+        .footer a {
+            color: black; /* Primary Dark */
+            text-decoration: none;
+            font-weight: bold; /* Open Sans with font-medium */
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .unsubscribe-links {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+            color: #555;
+        }
+        .unsubscribe-links a {
+            color: #555;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="{{siteBaseUrl}}/images/logos/Logo Banner TOP.png" alt="{{companyName}} Logo" />
+        </div>
+        <h1>Subscription Confirmed!</h1>
+        <p>Hi there,</p>
+        <p>Thank you for subscribing to the {{companyName}} newsletter! You're all set to receive the latest news, updates, and exclusive offers directly to your inbox.</p>
+        <p>We're excited to have you as part of our community.</p>
+        <p>If you have any questions, feel free to <a href="mailto:{{contactEmail}}">contact us</a>.</p>
+        <p>Best regards,<br/><strong>The {{companyName}} Team</strong></p>
+        
+        <div class="footer">
+            <p>&copy; {{currentYear}} {{companyName}}. All rights reserved.</p>
+            <p><a href="{{companyWebsite}}">Visit our Website</a></p>
+        </div>
+
+        <div class="unsubscribe-links">
+            <p>
+                To unsubscribe from future emails, click here: <%asm_group_unsubscribe_url%>
+            </p>
+            <p>
+                To manage your email preferences, click here: <%asm_preferences_url%>
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

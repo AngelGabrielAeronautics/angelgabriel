@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
+import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 
 interface MapEmbedProps {
   mapApiKey: string;
@@ -14,10 +14,10 @@ interface MapEmbedProps {
   mapContainerStyle?: React.CSSProperties;
 }
 
-const defaultMapContainerStyle: React.CSSProperties = {
+const defaultMapStyle: React.CSSProperties = {
   width: '100%',
-  height: '400px', // Default height, can be overridden
-  borderRadius: '0.5rem', // Corresponds to rounded-lg
+  height: '400px', // Default height
+  borderRadius: '0.5rem',
   overflow: 'hidden'
 };
 
@@ -29,7 +29,7 @@ const MapEmbed: React.FC<MapEmbedProps> = ({
   markerPositionLng,
   mapZoom = 15,
   containerClassName = 'rounded-lg overflow-hidden shadow-md',
-  mapContainerStyle = defaultMapContainerStyle,
+  mapContainerStyle,
 }) => {
   if (!mapApiKey) {
     return <div className="p-4 text-center text-red-600 bg-red-100 rounded-md">Google Maps API Key is missing.</div>;
@@ -45,8 +45,6 @@ const MapEmbed: React.FC<MapEmbedProps> = ({
     lng: markerPositionLng,
   };
 
-  // Define map styles to match your dark theme if desired, or use Google's defaults
-  // Example: Snazzy Maps provides various styles. This is a simple dark style.
   const mapOptions = {
     styles: [
       { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
@@ -128,23 +126,25 @@ const MapEmbed: React.FC<MapEmbedProps> = ({
         stylers: [{ color: "#17263c" }],
       },
     ],
-    disableDefaultUI: true, // Optionally disable default UI like zoom, map type controls
+    disableDefaultUI: true,
     zoomControl: true,
   };
+  
+  const effectiveMapStyle = { ...defaultMapStyle, ...mapContainerStyle };
 
   return (
-    <LoadScript googleMapsApiKey={mapApiKey}>
-      <div className={containerClassName}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={center}
-          zoom={mapZoom}
-          options={mapOptions}
+    <APIProvider apiKey={mapApiKey}>
+      <div className={containerClassName} style={effectiveMapStyle}>
+        <Map
+          defaultCenter={center}
+          defaultZoom={mapZoom}
+          style={{ width: '100%', height: '100%' }}
+          {...mapOptions}
         >
-          <MarkerF position={markerPosition} />
-        </GoogleMap>
+          <AdvancedMarker position={markerPosition} />
+        </Map>
       </div>
-    </LoadScript>
+    </APIProvider>
   );
 };
 

@@ -254,8 +254,9 @@ export default function ContactPage() {
           </div>
           
           <div className="mt-8 mb-12 rounded-lg overflow-hidden shadow-md">
-            <MapEmbed 
+            <MapEmbed
               mapApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
+              mapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || ''}
               mapCenterLat={-25.9388}
               mapCenterLng={27.9262}
               markerPositionLat={-25.9388}

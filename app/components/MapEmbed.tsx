@@ -5,6 +5,7 @@ import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 
 interface MapEmbedProps {
   mapApiKey: string;
+  mapId: string;
   mapCenterLat: number;
   mapCenterLng: number;
   markerPositionLat: number;
@@ -23,6 +24,7 @@ const defaultMapStyle: React.CSSProperties = {
 
 const MapEmbed: React.FC<MapEmbedProps> = ({
   mapApiKey,
+  mapId,
   mapCenterLat,
   mapCenterLng,
   markerPositionLat,
@@ -33,6 +35,9 @@ const MapEmbed: React.FC<MapEmbedProps> = ({
 }) => {
   if (!mapApiKey) {
     return <div className="p-4 text-center text-red-600 bg-red-100 rounded-md">Google Maps API Key is missing.</div>;
+  }
+  if (!mapId) {
+    return <div className="p-4 text-center text-red-600 bg-red-100 rounded-md">Google Maps Map ID is missing.</div>;
   }
 
   const center = {
@@ -136,6 +141,7 @@ const MapEmbed: React.FC<MapEmbedProps> = ({
     <APIProvider apiKey={mapApiKey}>
       <div className={containerClassName} style={effectiveMapStyle}>
         <Map
+          mapId={mapId}
           defaultCenter={center}
           defaultZoom={mapZoom}
           style={{ width: '100%', height: '100%' }}

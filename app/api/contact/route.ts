@@ -9,7 +9,7 @@ const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL!;
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info@angelgabriel.co.za';
 const CONTACT_FORM_CONFIRMATION_TEMPLATE_ID = 'd-e58033b4da1f44658511df1a75460b10f';
 const COMPANY_NAME = "Angel Gabriel Aeronautics";
-const SITE_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.angelgabriel.co.za";
+const SITE_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://flyangelgabriel.com";
 
 
 export async function POST(request: Request) {

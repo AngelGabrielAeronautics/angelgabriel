@@ -1,6 +1,6 @@
 import { DefaultSeoProps } from 'next-seo';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://angelgabriel.co.za';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://flyangelgabriel.com';
 
 const defaultSEOConfig: DefaultSeoProps = {
   // 1. Titles

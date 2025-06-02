@@ -19,8 +19,8 @@ const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL;
 const ADMIN_EMAIL = process.env.SALES_EMAIL || 'quotes@angelgabriel.co.za'; // Admin to notify
 const SUBSCRIBER_CONFIRMATION_TEMPLATE_ID = 'd-db641660670e475ca4df368ac391ea03';
 const COMPANY_NAME = "Angel Gabriel Aeronautics";
-const SITE_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.angelgabriel.co.za";
-const COMPANY_WEBSITE = process.env.NEXT_PUBLIC_SITE_URL || "https://www.angelgabriel.co.za";
+const SITE_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://flyangelgabriel.com";
+const COMPANY_WEBSITE = process.env.NEXT_PUBLIC_SITE_URL || "https://flyangelgabriel.com";
 
 export async function POST(request: Request) {
   try {

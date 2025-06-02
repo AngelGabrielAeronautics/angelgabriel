@@ -167,9 +167,9 @@ export async function POST(request: Request) {
         boltOns: boltOnsList,
         currentYear: new Date().getFullYear(),
         companyName: "Angel Gabriel Aeronautics",
-        companyWebsite: "https://www.angelgabriel.co.za", // You might want to put this in an env var
+        companyWebsite: "https://flyangelgabriel.com", // You might want to put this in an env var
         contactEmail: FROM_EMAIL, // Using the verified sender email as contact
-        siteBaseUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.angelgabriel.co.za", // For logo URL
+        siteBaseUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://flyangelgabriel.com", // For logo URL
         isOneWay: formData.routingType === 'oneWay',
         isReturn: formData.routingType === 'return',
         isMultiDestination: formData.routingType === 'multiDestination',

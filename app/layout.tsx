@@ -37,14 +37,14 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icon.png',
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://angelgabriel.co.za'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://flyangelgabriel.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://angelgabriel.co.za',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://flyangelgabriel.com',
     siteName: 'Angel Gabriel Aeronautics',
     title: 'Angel Gabriel Aeronautics | Luxury Charter Flights in Southern Africa',
     description: 'Experience unparalleled private air charter services with Southern Africa\'s remote destination specialist.',
@@ -110,8 +110,8 @@ export default function RootLayout({
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "Angel Gabriel",
-          "url": "https://angelgabriel.co.za",
-          "logo": "https://angelgabriel.co.za/logo.png",
+          "url": "https://flyangelgabriel.com",
+          "logo": "https://flyangelgabriel.com/logo.png",
           "sameAs": [
             "https://www.facebook.com/AngelGabriel",
             "https://www.linkedin.com/company/angelgabriel"

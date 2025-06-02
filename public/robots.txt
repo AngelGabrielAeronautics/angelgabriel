@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://flyangelgabriel.com
+Host: https://angelgabriel.co.za
 
 # Sitemaps
-Sitemap: https://flyangelgabriel.com/sitemap.xml
+Sitemap: https://angelgabriel.co.za/sitemap.xml

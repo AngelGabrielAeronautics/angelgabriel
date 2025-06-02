@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Message Confirmation - {{companyName}}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e9e2cf; /* Background Cream */
+            font-family: 'Open Sans', Arial, sans-serif;
+            color: #191100; /* Text Black */
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #ffffff; /* White for content background */
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            font-family: 'Montserrat', Verdana, sans-serif;
+            font-weight: bold;
+            color: black; /* Primary Dark for headers */
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: black; /* Primary Dark */
+        }
+        h2 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #e9e2cf; /* Subtle separator matching body background */
+            padding-bottom: 5px;
+            color: black; /* Primary Dark */
+        }
+        p, li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #191100; /* Text Black */
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li strong {
+            color: #241700; /* Secondary Dark for emphasis */
+            font-weight: bold; 
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9e2cf;
+            font-size: 14px;
+            color: #241700; /* Secondary Dark */
+        }
+        .footer a {
+            color: black; /* Primary Dark */
+            text-decoration: none;
+            font-weight: bold; 
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .message-content {
+            padding: 15px;
+            background-color: #f9fafb; /* Light Gray Background */
+            border-left: 3px solid #241700; /* Secondary Dark accent */
+            border-radius: 4px;
+            white-space: pre-wrap; /* To preserve line breaks in the message */
+            font-style: italic;
+        }
+        .button-link { 
+            display: inline-block;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px; /* rounded-md */
+            font-family: 'Open Sans', Arial, sans-serif; 
+            font-weight: 500; /* font-medium */
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .button-link:hover {
+            background-color: #1a1a1a; /* Slightly lighter black, like gray-900 */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: left; margin-bottom: 25px;">
+            <img src="{{siteBaseUrl}}/images/logos/Logo Banner TOP.png" alt="{{companyName}} Logo" style="max-width: 150px; height: auto;" />
+        </div>
+        <h1>{{companyName}}</h1>
+        <p>Dear {{firstName}} {{lastName}},</p>
+        <p>Thank you for contacting us. We have received your message and a member of our team will get back to you as soon as possible.</p>
+        <p>Please find a summary of your message below:</p>
+
+        <div class="section">
+            <h2>Your Information</h2>
+            <ul>
+                <li><strong>Full Name:</strong> {{firstName}} {{lastName}}</li>
+                <li><strong>Email Address:</strong> {{email}}</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Your Message</h2>
+            <div class="message-content">
+                <p>{{message}}</p>
+            </div>
+        </div>
+
+        <p>If you have any urgent queries, please don't hesitate to contact us directly at <a href="mailto:{{contactEmail}}" style="color: black; text-decoration: underline;">{{contactEmail}}</a> or call us.</p>
+        <p>We appreciate you reaching out to {{companyName}}.</p>
+        <p style="margin-top: 20px;">Best regards,<br/><strong>The {{companyName}} Team</strong></p>
+        
+        <div class="footer">
+            <p>&copy; {{currentYear}} {{companyName}}. All rights reserved.</p>
+            <p><a href="{{companyWebsite}}">Visit our Website</a> | <a href="mailto:{{contactEmail}}">Contact Us</a></p>
+            <p style="font-size: 12px; color: #555; margin-top:10px;">This email was sent in response to a contact form submission on {{companyWebsite}}.</p>
+        </div>
+    </div>
+</body>
+</html> 

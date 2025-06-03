@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import PageHeader from '../components/PageHeader';
 import Head from 'next/head';
+import CallToAction from '../components/CallToAction';
+import AnimatedServiceCollage from '../components/AnimatedServiceCollage';
 
 type BlogPost = {
   slug: string;
@@ -43,6 +45,24 @@ export default function BlogPage() {
 
   const blogPosts: BlogPost[] = [
     {
+      slug: 'mashatu-game-reserve',
+      title: 'Mashatu Game Reserve: Land of the Giants in Botswana',
+      excerpt: 'Mashatu Game Reserve in Botswana\'s Northern Tuli Block spans 42,000 hectares of wilderness with iconic wildlife and luxury lodges.',
+      date: 'June 25, 2025',
+      category: 'Destinations',
+      imageText: 'Panoramic view of Mashatu Game Reserve',
+      imageSrc: '/images/blogs/mashatu-game-reserve/overview.jpg',
+    },
+    {
+      slug: 'lubbesrust-farm',
+      title: 'Lubbesrust Farm: Exclusive Wilderness Lodge in Botswana',
+      excerpt: 'Lubbesrust Farm in Botswana\'s Tuli Block offers over 20,712 hectares of fenced wilderness, a private airstrip, and luxurious lodges for an unforgettable safari experience.',
+      date: 'June 3, 2025',
+      category: 'Destinations',
+      imageText: 'Aerial view of Lubbesrust Farm reserve',
+      imageSrc: '/images/blogs/lubbesrust-farm/overview.jpg',
+    },
+    {
       slug: 'exploring-the-wild',
       title: 'Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving',
       excerpt: 'Discover why flying with Angel Gabriel Aeronautics is the safest and most efficient way to explore remote destinations in Southern Africa.',
@@ -51,30 +71,6 @@ export default function BlogPage() {
       imageText: 'People boarding a charter aircraft',
       imageSrc: '/images/blogs/OFD.png',
     },
-    {
-      slug: 'top-safari-destinations',
-      title: 'Top 5 Safari Destinations Accessible Only by Charter Flight',
-      excerpt: 'Explore these exclusive safari destinations that are only accessible by private charter flights, offering untouched wilderness and ultimate privacy.',
-      date: 'July 15, 2024',
-      category: 'Destinations',
-      imageText: 'Aerial view of remote safari lodge'
-    },
-    {
-      slug: 'business-travel-solutions',
-      title: 'Business Travel Solutions: How Private Charters Save Time and Increase Productivity',
-      excerpt: 'Learn how executives and business teams maximize productivity by choosing private charter flights for their corporate travel needs.',
-      date: 'June 8, 2024',
-      category: 'Business',
-      imageText: 'Business executive boarding private jet'
-    },
-    {
-      slug: 'south-africas-hidden-gems',
-      title: `South Africa's Hidden Gems: Remote Destinations Accessible Only by Air`,
-      excerpt: 'Explore the exclusive, off-the-beaten-path locations throughout Southern Africa that are best reached through private air charter.',
-      date: 'March 12, 2023',
-      category: 'Destinations',
-      imageText: 'Aerial view of remote South African landscape'
-    }
   ];
 
   return (
@@ -135,6 +131,19 @@ export default function BlogPage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+          <CallToAction
+            title="Ready to explore the skies?"
+            subtitle="Contact us to request your private charter quote or learn about our services."
+            href="/quotes"
+            linkText="Request a charter quote"
+          />
+        </motion.div>
+
+        <div className="relative max-w-7xl mx-auto w-full h-[600px] mt-12 mb-12">
+          <AnimatedServiceCollage />
         </div>
       </motion.div>
     </>

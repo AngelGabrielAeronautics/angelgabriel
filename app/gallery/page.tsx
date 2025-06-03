@@ -161,7 +161,7 @@ export default function GalleryPage() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 pb-12 max-w-7xl">
+        <div className="container mx-auto px-4 max-w-7xl">
           {/* Gallery Grid - This section will be removed */}
           {/*
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -193,10 +193,10 @@ export default function GalleryPage() {
           </div>
           
           {/* Banner linking to About Page - REPLACING the old About Section */}
-          <div className="mb-16">
+          <div className="my-16">
             <QuoteBanner
-              backgroundSrc="/images/banners/about-us-gallery-promo.jpg" // Placeholder - Update with relevant image for gallery context
-              altText="Angel Gabriel Aeronautics aircraft fleet or scenic view related to company information"
+              backgroundSrc="/images/banners/about.jpg" // Placeholder - Update with relevant image for gallery context
+              altText="Angel Gabriel Aeronautics mascot"
               title="Learn More About Us"
               subtitle="Discover our history, our fleet, and what makes Angel Gabriel Aeronautics your premier choice for air charter."
               ctaText="Explore Our About Page"
@@ -206,7 +206,7 @@ export default function GalleryPage() {
         </div>
 
         {/* Animated Service Collage Section */}
-        <div className="mt-20 mb-12">
+        <div className="mt-16 mb-12">
           <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md max-w-7xl mx-auto">
             <AnimatedServiceCollage />
           </div>

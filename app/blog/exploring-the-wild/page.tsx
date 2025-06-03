@@ -6,6 +6,9 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import PageHeader from '../../components/PageHeader';
+import CallToAction from '../../components/CallToAction';
+import AnimatedServiceCollage from '../../components/AnimatedServiceCollage';
+import RelatedArticles from '../../components/RelatedArticles';
 
 export default function ExploringTheWildBlogPost() {
   const pageUrl = process.env.SITE_URL + '/blog/exploring-the-wild';
@@ -23,19 +26,21 @@ export default function ExploringTheWildBlogPost() {
     }
   };
 
-  // Sample related posts
+  // Related posts
   const relatedPosts = [
     {
-      slug: 'luxury-lodge-hopping',
-      title: 'Luxury Lodge Hopping: The Ultimate Safari Experience',
-      excerpt: 'Experience multiple premium safari lodges in a single trip with our efficient air charter services.',
-      imageText: 'Lodge with infinity pool'
+      slug: 'lubbesrust-farm',
+      title: 'Lubbesrust Farm: Exclusive Wilderness Lodge in Botswana',
+      excerpt: 'Lubbesrust Farm offers over 20,712 hectares of fenced wilderness and a private airstrip for an unforgettable safari experience.',
+      imageText: 'Aerial view of Lubbesrust Farm reserve',
+      imageSrc: '/images/blogs/lubbesrust-farm/overview.jpg'
     },
     {
-      slug: 'south-africas-hidden-gems',
-      title: 'South Africa\'s Hidden Gems: Remote Destinations',
-      excerpt: 'Explore off-the-beaten-path locations throughout Southern Africa.',
-      imageText: 'Aerial view of landscape'
+      slug: 'mashatu-game-reserve',
+      title: 'Mashatu Game Reserve: Land of the Giants in Botswana',
+      excerpt: 'Mashatu Game Reserve spans 42,000 hectares of wilderness at the confluence of the Limpopo and Shashe rivers, featuring luxury lodges and iconic wildlife.',
+      imageText: 'Panoramic view of Mashatu Game Reserve',
+      imageSrc: '/images/blogs/mashatu-game-reserve/overview.jpg'
     }
   ];
 
@@ -81,7 +86,12 @@ export default function ExploringTheWildBlogPost() {
       <motion.div initial="hidden" animate="visible" variants={fadeIn} role="main" className="min-h-screen bg-ag-cream font-sans">
         <PageHeader title="Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving" subtitle={publishedDate} />
 
-        <div className="container mx-auto px-4 py-12">
+        <div className="container mx-auto px-4 mt-6 text-right">
+          <Link href="/blog" className="text-text-black hover:text-secondary-dark font-medium font-sans inline-block mb-8">
+            ← Back to Blog
+          </Link>
+        </div>
+        <article className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8 rounded-lg overflow-hidden">
               <div className="relative h-96 w-full">
@@ -104,7 +114,7 @@ export default function ExploringTheWildBlogPost() {
                 When planning a trip to remote destinations in Southern Africa, the journey is just as important as the destination. Many travelers face the dilemma of whether to drive long distances on challenging terrain or opt for a charter flight. At Angel Gabriel Aeronautics, we've been helping clients explore the wild beauty of Africa for over a decade, and we can confidently say that chartering an aircraft isn't just more comfortable—it's safer and faster too.
               </p>
 
-              <h2>The Safety Factor</h2>
+              <h2 className="text-3xl font-light font-heading text-text-black mt-8 mb-8">The Safety Factor</h2>
               <p>
                 Southern Africa's roads, particularly those leading to remote safari destinations, can present numerous challenges:
               </p>
@@ -125,7 +135,7 @@ export default function ExploringTheWildBlogPost() {
                 <li>Modern navigation equipment and safety features</li>
               </ul>
 
-              <h2>Time Efficiency</h2>
+              <h2 className="text-3xl font-light font-heading text-text-black mt-8 mb-8">Time Efficiency</h2>
               <p>
                 Perhaps the most significant advantage of chartering an aircraft is the time saved. A journey that might take 8-10 hours by road can often be completed in under 2 hours by air. This means:
               </p>
@@ -136,7 +146,7 @@ export default function ExploringTheWildBlogPost() {
                 <li>Flexibility to adjust your schedule if needed</li>
               </ul>
 
-              <h2>The Experience</h2>
+              <h2 className="text-3xl font-light font-heading text-text-black mt-8 mb-8">The Experience</h2>
               <p>
                 Beyond safety and time considerations, flying over Southern Africa offers an unparalleled perspective on the landscape. From the air, you'll witness:
               </p>
@@ -147,7 +157,7 @@ export default function ExploringTheWildBlogPost() {
                 <li>A more comfortable journey in our climate-controlled aircraft</li>
               </ul>
 
-              <h2>Environmental Considerations</h2>
+              <h2 className="text-3xl font-light font-heading text-text-black mt-8 mb-8">Environmental Considerations</h2>
               <p>
                 While all travel has an environmental impact, charter flights can sometimes be the more eco-friendly option when:
               </p>
@@ -157,83 +167,30 @@ export default function ExploringTheWildBlogPost() {
                 <li>Less infrastructure impact on delicate ecosystems compared to road building</li>
               </ul>
 
-              <h2>Is a Charter Flight Right for You?</h2>
+              <h2 className="text-3xl font-light font-heading text-text-black mt-8 mb-8">Is a Charter Flight Right for You?</h2>
               <p>
                 If you value your time, safety, and comfort, chartering an aircraft with Angel Gabriel Aeronautics makes perfect sense for exploring Southern Africa's remote destinations. Our experienced team can help plan your journey to maximize both enjoyment and efficiency.
               </p>
-
-              <div className="mt-8 p-4 bg-gray-100 rounded-lg">
-                <p className="font-bold">Ready to explore the wild? Contact us today to discuss your travel plans and discover how we can make your journey as memorable as your destination.</p>
-                <Link 
-                  href="/quotes" 
-                  className="px-8 py-4 shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-300 font-sans inline-block mt-4"
-                >
-                  Request a Quote
-                </Link>
-              </div>
             </motion.div>
           </div>
-        </div>
+        </article>
 
-        {/* Related Posts */}
-        <div className="max-w-5xl mx-auto mt-16">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Related Articles</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {relatedPosts.map((post, index) => (
-                <div key={post.slug} className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <div className="aspect-video bg-gray-100 relative flex items-center justify-center">
-                    <p className="text-gray-500 text-center p-4">{post.imageText}</p>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-700 mb-5">
-                      {post.excerpt}
-                    </p>
-                    <Link 
-                      href={`/blog/${post.slug}`}
-                      aria-label={`Read more about ${post.title}`}
-                      className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800"
-                    >
-                      Read More
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-        
+        {/* Related Articles Section */}
+        <RelatedArticles posts={relatedPosts} />
+
         {/* CTA Section */}
-        <motion.div 
-          className="max-w-4xl mx-auto mt-16 text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Experience the Angel Gabriel Difference?</h2>
-          <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
-            Contact our team to discuss your travel needs and discover how our charter services can elevate your Southern African adventure.
-          </p>
-          <Link 
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+          <CallToAction
+            title="Ready to explore the wild?"
+            subtitle="Contact us today to discuss your travel plans and discover how we can make your journey as memorable as your destination."
             href="/quotes"
-            className="inline-flex items-center justify-center px-8 py-4 shadow-sm text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors duration-300 font-sans"
-          >
-            Request a charter quote
-          </Link>
+            linkText="Request a charter quote"
+          />
         </motion.div>
+        {/* Service Collage Section */}
+        <div className="relative max-w-7xl mx-auto w-full h-[600px] mt-12 mb-12">
+          <AnimatedServiceCollage />
+        </div>
       </motion.div>
     </>
   );

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import sgMail from '@sendgrid/mail';
+import fs from 'fs';
+import path from 'path';
 
 // Initialize SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
@@ -53,33 +55,29 @@ Message: ${message}`,
       // return NextResponse.json({ success: false, error: 'Failed to send contact email' }, { status: 500 });
     }
 
-    // Send confirmation to user using dynamic template
+    // Send confirmation to user using static HTML template
     try {
-      const templateData = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        message: message, // Make sure your template 'd-e58033b4da1f44658511df1a75460b10f' expects this
-        currentYear: new Date().getFullYear(),
-        companyName: COMPANY_NAME,
-        companyWebsite: SITE_BASE_URL, 
-        contactEmail: FROM_EMAIL, 
-        siteBaseUrl: SITE_BASE_URL,
-      };
+      const templatePath = path.join(process.cwd(), 'public', 'email-templates', 'EmailTemplateContactConfirmation.html');
+      let htmlTemplate = await fs.promises.readFile(templatePath, 'utf-8');
+      htmlTemplate = htmlTemplate
+        .replace(/{{companyName}}/g, COMPANY_NAME)
+        .replace(/{{firstName}}/g, firstName)
+        .replace(/{{lastName}}/g, lastName)
+        .replace(/{{email}}/g, email)
+        .replace(/{{message}}/g, message)
+        .replace(/{{contactEmail}}/g, FROM_EMAIL)
+        .replace(/{{currentYear}}/g, new Date().getFullYear().toString())
+        .replace(/{{companyWebsite}}/g, SITE_BASE_URL)
+        .replace(/{{siteBaseUrl}}/g, SITE_BASE_URL);
 
       await sgMail.send({
         to: email,
         from: { email: FROM_EMAIL, name: COMPANY_NAME },
-        templateId: CONTACT_FORM_CONFIRMATION_TEMPLATE_ID,
-        dynamicTemplateData: templateData,
-        // You might want to add ASM group ID for unsubscribe management if relevant for contact confirmations
-        // asm: { 
-        //   groupId: YOUR_UNSUBSCRIBE_GROUP_ID_FOR_CONTACTS, 
-        // },
+        subject: `Thank you for contacting ${COMPANY_NAME}`,
+        html: htmlTemplate,
       });
     } catch (err: any) {
-      // Log error but don't fail the request if user confirmation fails
-      console.error('Error sending user confirmation email for contact form:', err.response?.body || err.message);
+      console.error('Error sending user confirmation email for contact form:', err.message || err);
     }
 
     return NextResponse.json({ success: true });

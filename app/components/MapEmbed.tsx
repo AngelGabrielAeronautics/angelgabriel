@@ -22,22 +22,6 @@ const defaultMapStyle: React.CSSProperties = {
   overflow: 'hidden'
 };
 
-// Custom cream & grey map palette
-const customMapStyles: google.maps.MapTypeStyle[] = [
-  { elementType: 'geometry', stylers: [{ color: '#e9e2cf' }] },
-  { elementType: 'labels.text.fill', stylers: [{ color: '#191100' }] },
-  { elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
-  { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#cccccc' }] },
-  { featureType: 'administrative.land_parcel', elementType: 'geometry.stroke', stylers: [{ color: '#dddddd' }] },
-  { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#f9fafb' }] },
-  { featureType: 'poi.park', elementType: 'geometry.fill', stylers: [{ color: '#f9fafb' }] },
-  { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#f9f9f9' }] },
-  { featureType: 'road.arterial', elementType: 'geometry', stylers: [{ color: '#f9f9f9' }] },
-  { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#dddddd' }] },
-  { featureType: 'road.highway.controlled_access', elementType: 'geometry', stylers: [{ color: '#cccccc' }] },
-  { featureType: 'water', elementType: 'geometry.fill', stylers: [{ color: '#e9e9e9' }] }
-];
-
 const MapEmbed: React.FC<MapEmbedProps> = ({
   mapApiKey,
   mapId,
@@ -77,7 +61,6 @@ const MapEmbed: React.FC<MapEmbedProps> = ({
           defaultZoom={mapZoom}
           disableDefaultUI={true}
           zoomControl={true}
-          options={{ styles: customMapStyles }}
           style={{ width: '100%', height: '100%' }}
         >
           <AdvancedMarker position={markerPosition} />

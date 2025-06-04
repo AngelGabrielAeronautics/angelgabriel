@@ -88,7 +88,7 @@ export default function MashatuGameReserveBlogPost() {
         <RelatedArticles posts={relatedPosts} />
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-          <CallToAction title="Ready for your Mashatu adventure?" subtitle="Contact us to book your private charter flight and safari stay at Mashatu Game Reserve." href="/quotes" linkText="Request a charter quote" />
+          <CallToAction title="Ready for your Mashatu adventure?" subtitle="Contact us to book your private charter flight and safari stay at Mashatu Game Reserve." href="/rates-and-quotes" linkText="Request a charter quote" />
         </motion.div>
 
         {/* Service Collage Section */}

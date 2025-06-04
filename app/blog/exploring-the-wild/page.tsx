@@ -183,7 +183,7 @@ export default function ExploringTheWildBlogPost() {
           <CallToAction
             title="Ready to explore the wild?"
             subtitle="Contact us today to discuss your travel plans and discover how we can make your journey as memorable as your destination."
-            href="/quotes"
+            href="/rates-and-quotes"
             linkText="Request a charter quote"
           />
         </motion.div>

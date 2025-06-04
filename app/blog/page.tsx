@@ -137,7 +137,7 @@ export default function BlogPage() {
           <CallToAction
             title="Ready to explore the skies?"
             subtitle="Contact us to request your private charter quote or learn about our services."
-            href="/quotes"
+            href="/rates-and-quotes"
             linkText="Request a charter quote"
           />
         </motion.div>

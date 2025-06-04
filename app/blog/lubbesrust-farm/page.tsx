@@ -126,7 +126,7 @@ export default function LubbesrustFarmBlogPost() {
           <CallToAction
             title="Ready to book your lodge experience?"
             subtitle="Contact us to schedule your private charter flight and lodge stay at Lubbesrust Farm."
-            href="/quotes"
+            href="/rates-and-quotes"
             linkText="Request a charter quote"
           />
         </motion.div>

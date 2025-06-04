@@ -86,15 +86,13 @@ export default function ExploringTheWildBlogPost() {
       <motion.div initial="hidden" animate="visible" variants={fadeIn} role="main" className="min-h-screen bg-ag-cream font-sans">
         <PageHeader title="Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer and Faster than Driving" subtitle={publishedDate} />
 
-        <div className="container mx-auto px-4 mt-6 text-right">
-          <Link href="/blog" className="text-text-black hover:text-secondary-dark font-medium font-sans inline-block mb-8">
-            ← Back to Blog
-          </Link>
-        </div>
         <article className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8 rounded-lg overflow-hidden">
               <div className="relative h-96 w-full">
+                <Link href="/blog" className="absolute top-4 right-4 z-10 text-text-black hover:text-secondary-dark font-medium font-sans bg-white bg-opacity-75 px-3 py-1 rounded">
+                  ← Back to Blog
+                </Link>
                 <Image 
                   src="/images/blogs/OFD.png" 
                   alt="People boarding a charter aircraft" 

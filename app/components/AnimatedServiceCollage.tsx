@@ -89,7 +89,9 @@ export default function AnimatedServiceCollage() {
                       .replace(/\.[^/.]+$/, '')
                   ).replace(/[-_]/g, ' ')}
                   fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-cover"
+                  priority={idx < 4}
                 />
               </motion.div>
             </AnimatePresence>

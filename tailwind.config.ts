@@ -73,8 +73,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        heading: ['Montserrat', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sen)', 'Arial', 'sans-serif'],
+        heading: ['var(--font-sen)', 'Arial', 'sans-serif'],
       },
       boxShadow: {
         'inner-sm': 'inset 0 1px 2px 0 rgb(0 0 0 / 0.05)',

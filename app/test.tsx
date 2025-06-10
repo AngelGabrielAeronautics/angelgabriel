@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 export default function TestPage() {
   return (
     <div className="p-10">
@@ -14,4 +16,12 @@ export default function TestPage() {
       </div>
     </div>
   );
-} 
+}
+
+export const metadata: Metadata = {
+  title: 'Test Page',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}; 

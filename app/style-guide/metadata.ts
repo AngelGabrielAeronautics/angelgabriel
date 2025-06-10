@@ -11,6 +11,10 @@ export const metadata: Metadata = {
     'website design',
     'brand guidelines'
   ],
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'Style Guide | Angel Gabriel Aeronautics',
     description: 'A comprehensive guide to the design system and components used throughout the Angel Gabriel Aeronautics website.',

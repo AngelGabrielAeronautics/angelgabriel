@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     'user data rights',
     'privacy terms'
   ],
+  alternates: {
+    canonical: '/privacy-policy',
+  },
   openGraph: {
     title: 'Angel Gabriel Aeronautics | Privacy Policy',
     description: 'Review our privacy policy regarding data collection, usage, and protection practices for users of our private charter flight services.',

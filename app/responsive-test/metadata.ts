@@ -1,6 +1,13 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  openGraph: { images: ['/responsive-test/opengraph-image.png'] },
-  twitter:   { images: ['/responsive-test/twitter-image.png'] },
+  title: 'Responsive Test',
+  description: 'Test site responsiveness on standard screen sizes',
+  alternates: {
+    canonical: '/responsive-test',
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 }; 

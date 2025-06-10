@@ -83,6 +83,7 @@ export default function ContactPage() {
   return (
     <>
       <Head>
+        <link rel="canonical" href={pageUrl} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -177,10 +178,10 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-text-black mb-1 font-sans">First name</label>
+                    <label htmlFor="contact-firstName" className="block text-sm font-medium text-text-black mb-1 font-sans">First name</label>
                     <input
                       type="text"
-                      id="firstName"
+                      id="contact-firstName"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
@@ -188,10 +189,10 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-text-black mb-1 font-sans">Last name</label>
+                    <label htmlFor="contact-lastName" className="block text-sm font-medium text-text-black mb-1 font-sans">Last name</label>
                     <input
                       type="text"
-                      id="lastName"
+                      id="contact-lastName"
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
@@ -200,10 +201,10 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-text-black mb-1 font-sans">Email*</label>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-text-black mb-1 font-sans">Email*</label>
                   <input
                     type="email"
-                    id="email"
+                    id="contact-email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
@@ -212,9 +213,9 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-text-black mb-1 font-sans">Message*</label>
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-text-black mb-1 font-sans">Message*</label>
                   <textarea
-                    id="message"
+                    id="contact-message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}

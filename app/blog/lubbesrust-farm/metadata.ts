@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Lubbesrust Farm: Exclusive Wilderness Lodge in Botswana | Angel Gabriel Aeronautics',
   description: 'Discover Lubbesrust Farm, a luxurious safari lodge in Botswana\'s Tuli Block with a private airstrip, exclusive lodges, and unforgettable wildlife experiences.',
+  alternates: {
+    canonical: '/blog/lubbesrust-farm',
+  },
   keywords: [
     'Lubbesrust',
     'Botswana',

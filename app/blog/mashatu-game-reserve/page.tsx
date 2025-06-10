@@ -54,7 +54,14 @@ export default function MashatuGameReserveBlogPost() {
                 <Link href="/blog" className="absolute top-4 right-4 z-10 text-text-black hover:text-secondary-dark font-medium font-sans bg-white bg-opacity-75 px-3 py-1 rounded">
                   ← Back to Blog
                 </Link>
-                <Image src="/images/blogs/mashatu-game-reserve/overview.jpg" alt="Panoramic view of Mashatu Game Reserve" fill className="object-cover" />
+                <Image
+                  src="/images/blogs/mashatu-game-reserve/overview.jpg"
+                  alt="Panoramic view of Mashatu Game Reserve"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  priority
+                  className="object-cover"
+                />
               </div>
             </div>
 

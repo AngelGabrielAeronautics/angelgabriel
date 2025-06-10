@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     'cookie management',
     'cookie consent'
   ],
+  alternates: {
+    canonical: '/cookie-policy',
+  },
   openGraph: {
     title: 'Angel Gabriel Aeronautics | Cookie Policy',
     description: 'Learn about our cookie policy and how we use cookies to enhance your experience on our website.',

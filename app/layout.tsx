@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat, Open_Sans } from 'next/font/google'
+import { Sen } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
@@ -7,15 +7,9 @@ import Script from 'next/script'
 import { Toaster } from 'react-hot-toast'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react'
 
-const montserrat = Montserrat({ 
+const sen = Sen({ 
   subsets: ['latin'],
-  variable: '--font-montserrat',
-  display: 'swap',
-})
-
-const openSans = Open_Sans({ 
-  subsets: ['latin'],
-  variable: '--font-open-sans',
+  variable: '--font-sen',
   display: 'swap',
 })
 
@@ -38,9 +32,6 @@ export const metadata: Metadata = {
     icon: '/icon.png',
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://flyangelgabriel.com'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
@@ -85,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${openSans.variable} scroll-smooth`}>
+    <html lang="en" className={`${sen.className} scroll-smooth`}>
       <head>
         <Script
           strategy="afterInteractive"
@@ -106,40 +97,58 @@ export default function RootLayout({
             `,
           }}
         />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Angel Gabriel",
-          "url": "https://flyangelgabriel.com",
-          "logo": "https://flyangelgabriel.com/logo.png",
-          "sameAs": [
-            "https://www.facebook.com/AngelGabriel",
-            "https://www.linkedin.com/company/angelgabriel"
-          ]
-        })}} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Angel Gabriel Aeronautics",
-          "url": process.env.SITE_URL || "https://flyangelgabriel.com"
-        })}} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "SiteNavigationElement",
-          "name": "Main navigation",
-          "url": process.env.SITE_URL || "https://flyangelgabriel.com",
-          "hasPart": [
-            { "@type": "SiteNavigationElement", "name": "Home", "url": process.env.SITE_URL || "https://flyangelgabriel.com" },
-            { "@type": "SiteNavigationElement", "name": "Contact", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/contact" },
-            { "@type": "SiteNavigationElement", "name": "Rates & Quotes", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/rates-and-quotes" },
-            { "@type": "SiteNavigationElement", "name": "Services", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/services" },
-            { "@type": "SiteNavigationElement", "name": "Fleet", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/fleet" },
-            { "@type": "SiteNavigationElement", "name": "Gallery", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/gallery" },
-            { "@type": "SiteNavigationElement", "name": "About", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/about" },
-            { "@type": "SiteNavigationElement", "name": "Links & Endorsements", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/links" },
-            { "@type": "SiteNavigationElement", "name": "Blog", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/blog" }
-          ]
-        })}} />
+        <Script
+          id="json-ld-organization"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Angel Gabriel",
+              "url": "https://flyangelgabriel.com",
+              "logo": "https://flyangelgabriel.com/logo.png",
+              "sameAs": [
+                "https://www.facebook.com/AngelGabriel",
+                "https://www.linkedin.com/company/angelgabriel"
+              ]
+            })
+          }}
+        />
+        <Script
+          id="json-ld-website"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Angel Gabriel Aeronautics",
+              "url": process.env.SITE_URL || "https://flyangelgabriel.com"
+            })
+          }}
+        />
+        <Script
+          id="json-ld-navigation"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              "name": "Main navigation",
+              "url": process.env.SITE_URL || "https://flyangelgabriel.com",
+              "hasPart": [
+                { "@type": "SiteNavigationElement", "name": "Home", "url": process.env.SITE_URL || "https://flyangelgabriel.com" },
+                { "@type": "SiteNavigationElement", "name": "Contact", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/contact" },
+                { "@type": "SiteNavigationElement", "name": "Rates & Quotes", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/rates-and-quotes" },
+                { "@type": "SiteNavigationElement", "name": "Services", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/services" },
+                { "@type": "SiteNavigationElement", "name": "Fleet", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/fleet" },
+                { "@type": "SiteNavigationElement", "name": "Gallery", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/gallery" },
+                { "@type": "SiteNavigationElement", "name": "About", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/about" },
+                { "@type": "SiteNavigationElement", "name": "Links & Endorsements", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/links" },
+                { "@type": "SiteNavigationElement", "name": "Blog", "url": (process.env.SITE_URL || "https://flyangelgabriel.com") + "/blog" }
+              ]
+            })
+          }}
+        />
       </head>
       <body suppressHydrationWarning className="flex min-h-screen flex-col bg-ag-cream text-ag-text font-sans antialiased">
         {/* Toast notifications */}

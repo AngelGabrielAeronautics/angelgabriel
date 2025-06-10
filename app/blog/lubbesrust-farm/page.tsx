@@ -76,6 +76,8 @@ export default function LubbesrustFarmBlogPost() {
                   src="/images/blogs/lubbesrust-farm/overview.jpg"
                   alt="Aerial view of Lubbesrust Farm reserve"
                   fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  priority
                   className="object-cover"
                 />
               </div>

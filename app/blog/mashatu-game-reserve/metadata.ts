@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Mashatu Game Reserve: Land of the Giants in Botswana | Angel Gabriel Aeronautics',
   description: 'Explore Mashatu Game Reserve, Botswana\'s 42,000-hectare wilderness in the Northern Tuli Game Reserve, where luxury lodges and private air travel converge for an unforgettable safari.',
+  alternates: {
+    canonical: '/blog/mashatu-game-reserve',
+  },
   keywords: [
     'Mashatu',
     'Game Reserve',

@@ -134,6 +134,7 @@ export default function ServicesPage() {
   return (
     <>
       <Head>
+        <link rel="canonical" href={pageUrl} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -171,7 +172,7 @@ export default function ServicesPage() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
           >
-            {services.map((service) => (
+            {services.map((service, index) => (
               <motion.div
                 key={service.id}
                 variants={fadeIn}
@@ -182,7 +183,9 @@ export default function ServicesPage() {
                     src={service.image}
                     alt={service.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
+                    priority={index === 0}
                   />
                 </div>
                 <div className="p-6">

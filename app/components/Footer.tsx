@@ -95,6 +95,7 @@ export default function Footer() {
                 src="/images/services/Flying Safaris.jpg"
                 alt="Charter Aircraft"
                 fill
+                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
               />
             </div>
@@ -116,10 +117,10 @@ export default function Footer() {
             <h3 className="text-xl font-light font-heading text-hero-text mb-4">Contact us</h3>
             <form onSubmit={handleContactSubmit}>
               <div className="mb-4">
-                <label htmlFor="firstName" className="block text-sm mb-1 font-sans font-medium text-hero-text">First name</label>
+                <label htmlFor="footer-firstName" className="block text-sm mb-1 font-sans font-medium text-hero-text">First name</label>
                 <input
                   type="text"
-                  id="firstName"
+                  id="footer-firstName"
                   name="firstName"
                   value={contactFormData.firstName}
                   onChange={handleContactChange}
@@ -128,10 +129,10 @@ export default function Footer() {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="lastName" className="block text-sm mb-1 font-sans font-medium text-hero-text">Last name</label>
+                <label htmlFor="footer-lastName" className="block text-sm mb-1 font-sans font-medium text-hero-text">Last name</label>
                 <input
                   type="text"
-                  id="lastName"
+                  id="footer-lastName"
                   name="lastName"
                   value={contactFormData.lastName}
                   onChange={handleContactChange}
@@ -140,10 +141,10 @@ export default function Footer() {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-sm mb-1 font-sans font-medium text-hero-text">Email <span className="text-red-400">*</span></label>
+                <label htmlFor="footer-email" className="block text-sm mb-1 font-sans font-medium text-hero-text">Email <span className="text-red-400">*</span></label>
                 <input
                   type="email"
-                  id="email"
+                  id="footer-email"
                   name="email"
                   value={contactFormData.email}
                   onChange={handleContactChange}
@@ -153,9 +154,9 @@ export default function Footer() {
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="message" className="block text-sm mb-1 font-sans font-medium text-hero-text">Message <span className="text-red-400">*</span></label>
+                <label htmlFor="footer-message" className="block text-sm mb-1 font-sans font-medium text-hero-text">Message <span className="text-red-400">*</span></label>
                 <textarea
-                  id="message"
+                  id="footer-message"
                   name="message"
                   value={contactFormData.message}
                   onChange={handleContactChange}
@@ -180,10 +181,10 @@ export default function Footer() {
             <h3 className="text-xl font-light font-heading text-hero-text mb-4">Subscribe to our newsletter</h3>
             <form onSubmit={handleSubscribeSubmit}>
               <div className="mb-4">
-                <label htmlFor="subscribeEmail" className="block text-sm mb-1 font-sans font-medium text-hero-text">Email <span className="text-red-400">*</span></label>
+                <label htmlFor="footer-subscribeEmail" className="block text-sm mb-1 font-sans font-medium text-hero-text">Email <span className="text-red-400">*</span></label>
                 <input
                   type="email"
-                  id="subscribeEmail"
+                  id="footer-subscribeEmail"
                   name="subscribeEmail"
                   value={subscribeEmail}
                   onChange={(e) => setSubscribeEmail(e.target.value)}

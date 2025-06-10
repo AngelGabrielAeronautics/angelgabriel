@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'VIP airport assistance',
     'golf safaris Africa'
   ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Angel Gabriel Aeronautics | Luxury Charter Flights in Southern Africa',
     description: 'Experience unparalleled private air charter services with Southern Africa\'s remote destination specialist. We offer personalized aviation solutions for business and leisure travelers.',

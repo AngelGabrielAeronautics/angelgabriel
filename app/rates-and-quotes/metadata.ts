@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: 'Rates and Quotes | Angel Gabriel Aeronautics',
   description: 'Request a personalized charter quote tailored to your specific needs. Get transparent pricing for private air charters across Southern Africa.',
   keywords: 'charter rates, private jet quotes, aircraft charter pricing, air taxi rates, Angel Gabriel Aeronautics quotes, South Africa charter costs',
+  alternates: {
+    canonical: '/rates-and-quotes',
+  },
   openGraph: {
     title: 'Rates and Quotes | Angel Gabriel Aeronautics',
     description: 'Request a personalized charter quote tailored to your specific needs. Get transparent pricing for private air charters across Southern Africa.',

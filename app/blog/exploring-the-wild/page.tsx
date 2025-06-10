@@ -93,10 +93,12 @@ export default function ExploringTheWildBlogPost() {
                 <Link href="/blog" className="absolute top-4 right-4 z-10 text-text-black hover:text-secondary-dark font-medium font-sans bg-white bg-opacity-75 px-3 py-1 rounded">
                   ← Back to Blog
                 </Link>
-                <Image 
-                  src="/images/blogs/OFD.png" 
-                  alt="People boarding a charter aircraft" 
+                <Image
+                  src="/images/blogs/OFD.png"
+                  alt="People boarding a charter aircraft"
                   fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  priority
                   className="object-cover"
                 />
               </div>

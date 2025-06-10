@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Blog | Angel Gabriel Aeronautics',
   description: 'Explore our blog for insights into aviation, travel tips, luxury safaris, and the unique experience of air charter services in Southern Africa.',
+  alternates: {
+    canonical: '/blog',
+  },
   keywords: [
     'aviation blog',
     'safari travel',

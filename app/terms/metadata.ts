@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     'flight booking window',
     'flight amendments'
   ],
+  alternates: {
+    canonical: '/terms',
+  },
   openGraph: {
     title: 'Angel Gabriel Aeronautics | Terms & Conditions',
     description: 'Essential booking information and charter flight terms for private air travel across Southern Africa with Angel Gabriel Aeronautics.',

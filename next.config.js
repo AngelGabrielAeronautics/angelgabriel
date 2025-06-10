@@ -60,6 +60,11 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/blank-5',
+        destination: '/',
+        permanent: true,
+      },
     ]
   },
 }

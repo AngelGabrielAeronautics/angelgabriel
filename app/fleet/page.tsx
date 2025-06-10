@@ -9,6 +9,9 @@ import Head from 'next/head';
 export const metadata = {
   title: 'Southern African Fleet | Angel Gabriel Aeronautics',
   description: 'Explore our fleet of over 30 vetted aircraft ranging from two-seaters to large jet airliners. Angel Gabriel provides a variety of aircraft across Southern Africa.',
+  alternates: {
+    canonical: '/fleet',
+  },
 };
 
 export default function FleetPage() {

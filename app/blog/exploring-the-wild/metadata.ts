@@ -3,6 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Exploring the Wild: Why Chartering an Aircraft with Angel Gabriel is Safer | Angel Gabriel Aeronautics',
   description: 'Discover why air travel with Angel Gabriel provides a safer, more efficient way to explore Southern Africa\'s remote wildlife areas compared to long road journeys.',
+  alternates: {
+    canonical: '/blog/exploring-the-wild',
+  },
   keywords: [
     'Angel Gabriel',
     'CharterFlights',

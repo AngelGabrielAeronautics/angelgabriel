@@ -27,7 +27,7 @@ export default function RatesAndQuotesPage() {
   return (
     <>
       <Head>
-        <link rel="canonical" href={pageUrl} />
+        {/* Offer structured data */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Offer",

@@ -83,7 +83,7 @@ export default function ContactPage() {
   return (
     <>
       <Head>
-        <link rel="canonical" href={pageUrl} />
+        {/* Breadcrumb structured data */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",

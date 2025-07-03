@@ -16,7 +16,9 @@ import Head from 'next/head';
 
 export default function Home() {
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
-  const pageUrl = process.env.SITE_URL + '/';
+  // Prefer the public site URL for client-side code; fallback to production domain
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://flyangelgabriel.com';
+  const pageUrl = siteUrl + '/';
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },

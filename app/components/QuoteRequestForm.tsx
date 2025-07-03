@@ -103,11 +103,11 @@ export default function QuoteRequestForm({
   })(); // 18 months from today
 
   useEffect(() => {
-    if (returnDate && travelDate && new Date(returnDate) < new Date(travelDate)) {
+    if (returnDate && travelDate && parseDateString(returnDate) < parseDateString(travelDate)) {
       // clear return date to force user re-entry
       setReturnDate('');
     }
-  }, [travelDate]);
+  }, [travelDate, returnDate]);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

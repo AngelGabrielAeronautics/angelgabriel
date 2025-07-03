@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   try {
     // Validate SendGrid API key
     if (!process.env.SENDGRID_API_KEY || !process.env.SENDGRID_API_KEY.startsWith('SG.')) {
-      console.error('Missing or invalid SendGrid API key:', process.env.SENDGRID_API_KEY);
+      console.error('Missing or invalid SendGrid API key.');
       return NextResponse.json({ success: false, error: 'Misconfigured SendGrid API key' }, { status: 500 });
     }
     const payload = await request.json();

@@ -48,7 +48,9 @@ export default function AnimatedServiceCollage() {
   }, []); // Empty dependency array ensures this runs only once on mount
 
   useEffect(() => {
+    let mounted = true;
     const interval = setInterval(() => {
+      if (!mounted) return;
       setIndices(prev => {
         const next = [...prev];
         // pick a random tile to change
@@ -62,7 +64,10 @@ export default function AnimatedServiceCollage() {
         return next;
       });
     }, 2000);
-    return () => clearInterval(interval);
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
   return (

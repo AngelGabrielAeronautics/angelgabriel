@@ -192,7 +192,9 @@ export default function QuoteRequestForm({
       if (!response.ok || !result.success) {
         const errMsg = result.error || 'Unknown server error';
         console.error('Quote request failed:', errMsg);
-        toast.error(`Error submitting form: ${errMsg}`);
+        // Sanitize error message to prevent XSS
+        const sanitizedError = String(errMsg).replace(/[<>]/g, '');
+        toast.error(`Error submitting form: ${sanitizedError}`);
         return;
       }
       // Success path

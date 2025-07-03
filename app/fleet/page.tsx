@@ -450,7 +450,7 @@ export default function FleetPage() {
                   <h3 className="text-xl font-light font-heading text-text-black mb-3">{aircraft.name}</h3>
                   <div className="text-sm text-text-black space-y-2 font-sans">
                     {aircraft.specs.map((spec, specIndex) => (
-                      <div key={specIndex}>{spec}</div>
+                      <div key={`${aircraft.name}-spec-${specIndex}`}>{spec}</div>
                     ))}
                   </div>
                 </div>

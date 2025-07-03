@@ -142,15 +142,21 @@ export default function QuoteRequestForm({
     setFormData((prev) => ({ ...prev, routingType: value as 'oneWay' | 'return' | 'multiDestination' }));
 
     // Reset additional routes when routing type changes
-    if (value === 'oneWay') {
-      setAdditionalRoutes([{ from: '', to: '', date: '' }]);
-    } else if (value === 'return') {
-      setAdditionalRoutes([{ from: '', to: '', date: '' }, { from: '', to: '', date: '' }]);
-    } else if (value === 'multiDestination') {
-      setAdditionalRoutes([{ from: '', to: '', date: '' }, { from: '', to: '', date: '' }, { from: '', to: '', date: '' }]);
+    // Only multiDestination should use additionalRoutes array
+    if (value === 'multiDestination') {
+      setAdditionalRoutes([
+        { from: '', to: '', date: '' }, 
+        { from: '', to: '', date: '' }, 
+        { from: '', to: '', date: '' }
+      ]);
     } else {
+      // Clear additional routes for oneWay and return types since they use separate form fields
       setAdditionalRoutes([]);
     }
+    
+    // Clear travel and return dates when switching routing types to force re-entry
+    setTravelDate('');
+    setReturnDate('');
   };
 
   const handleAdditionalRouteChange = (

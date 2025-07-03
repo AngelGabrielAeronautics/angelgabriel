@@ -3,11 +3,19 @@ import sgMail from '@sendgrid/mail';
 import fs from 'fs';
 import path from 'path';
 
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+// Initialize SendGrid with proper validation
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL;
 
-// Sender email must be a verified identity in SendGrid
-const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL!;
+if (!SENDGRID_API_KEY || !SENDGRID_API_KEY.startsWith('SG.')) {
+  throw new Error('Missing or invalid SENDGRID_API_KEY environment variable');
+}
+
+if (!FROM_EMAIL) {
+  throw new Error('Missing SENDGRID_FROM_EMAIL environment variable');
+}
+
+sgMail.setApiKey(SENDGRID_API_KEY);
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info@angelgabriel.co.za';
 const CONTACT_FORM_CONFIRMATION_TEMPLATE_ID = 'd-e58033b4da1f44658511df1a75460b10f';
 const COMPANY_NAME = "Angel Gabriel Aeronautics";
@@ -16,10 +24,10 @@ const SITE_BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://flyangelgabri
 
 export async function POST(request: Request) {
   try {
-    // Validate SendGrid API key
-    if (!process.env.SENDGRID_API_KEY || !process.env.SENDGRID_API_KEY.startsWith('SG.')) {
-      console.error('Missing or invalid SendGrid API key:', process.env.SENDGRID_API_KEY);
-      return NextResponse.json({ success: false, error: 'Misconfigured SendGrid API key' }, { status: 500 });
+    // Additional runtime validation (in case module-level validation was bypassed)
+    if (!SENDGRID_API_KEY || !SENDGRID_API_KEY.startsWith('SG.')) {
+      console.error('Missing or invalid SendGrid API key - configuration error');
+      return NextResponse.json({ success: false, error: 'Email service misconfigured' }, { status: 500 });
     }
     const payload = await request.json();
     console.log('Contact form payload:', JSON.stringify(payload));

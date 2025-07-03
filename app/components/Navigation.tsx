@@ -12,18 +12,26 @@ const Navigation = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
 
-  // Track scroll position
+  // Track scroll position with throttling for better performance
   useEffect(() => {
+    const SCROLL_THRESHOLD = 50
+    let ticking = false
+
     const handleScroll = () => {
-      const offset = window.scrollY
-      if (offset > 50) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const offset = window.scrollY
+          setIsScrolled(offset > SCROLL_THRESHOLD)
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    // Set initial state based on current scroll position
+    setIsScrolled(window.scrollY > SCROLL_THRESHOLD)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }

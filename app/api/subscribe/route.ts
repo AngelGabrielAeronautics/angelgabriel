@@ -7,14 +7,6 @@ import * as sendgridClient from '@sendgrid/client';
 // and ensures that 'HttpMethod' is correctly inferred as part of the request type.
 type ClientRequest = Parameters<typeof sendgridClient.request>[0];
 
-// Initialize SendGrid Mail and Client
-if (!process.env.SENDGRID_API_KEY) {
-  console.error('SENDGRID_API_KEY is not set.');
-  throw new Error('SENDGRID_API_KEY is not set.');
-}
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);
-
 const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL;
 const ADMIN_EMAIL = process.env.SALES_EMAIL || 'quotes@angelgabriel.co.za'; // Admin to notify
 const SUBSCRIBER_CONFIRMATION_TEMPLATE_ID = 'd-db641660670e475ca4df368ac391ea03';
@@ -24,10 +16,20 @@ const COMPANY_WEBSITE = process.env.NEXT_PUBLIC_SITE_URL || "https://flyangelgab
 
 export async function POST(request: Request) {
   try {
+    // Initialize SendGrid Mail and Client inside the function to avoid build-time errors
+    if (!process.env.SENDGRID_API_KEY) {
+      console.error('SENDGRID_API_KEY is not set.');
+      return NextResponse.json({ success: false, error: 'Email service misconfigured (API key)' }, { status: 500 });
+    }
+    
     if (!FROM_EMAIL) {
       console.error('SENDGRID_FROM_EMAIL is not set.');
       return NextResponse.json({ success: false, error: 'Email service misconfigured (from address)' }, { status: 500 });
     }
+
+    // Set API keys after validation
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    sendgridClient.setApiKey(process.env.SENDGRID_API_KEY);
 
     const { email } = await request.json();
 

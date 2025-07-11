@@ -459,7 +459,7 @@ export default function StyleGuidePage() {
               <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-4">
                 <h1 className="text-5xl md:text-6xl font-heading text-ag-cream mb-4">Links & endorsements</h1>
                 <p className="text-xl text-ag-cream mb-8 max-w-4xl">We have added a list of links that we hope may help you to plan your trip or navigate the local market.</p>
-                <HeroButton href="/quotes" text="Request a charter quote" />
+                <HeroButton href="/rates-and-quotes" text="Request a charter quote" />
               </div>
             </div>`}
           </pre>

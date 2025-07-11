@@ -1,21 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "http://flyangelgabriel.com/(.*)",
-      "destination": "https://flyangelgabriel.com/$1",
-      "permanent": true
-    },
-    {
-      "source": "http://www.flyangelgabriel.com/(.*)",
-      "destination": "https://flyangelgabriel.com/$1",
-      "permanent": true
-    },
-    {
-      "source": "https://www.flyangelgabriel.com/(.*)",
-      "destination": "https://flyangelgabriel.com/$1",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
